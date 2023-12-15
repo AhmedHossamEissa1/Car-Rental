@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAR RENTAL </title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="">
+</head>
+<body>
+
+    <nav>
+      <img src="images/vendor-8.png" alt="Company Logo" class="logo">
+      <!-- <input type="number" id="salary-from" placeholder="Salary From"> -->
+      <!-- <input type="number" id="salary-to" placeholder="Salary To"> -->
+      <select id="car-type">
+        <option value="sedan">Sedan</option>
+        <option value="suv">SUV</option>
+        <option value="hatchback">Hatchback</option>
+      </select>
+      <input type="text" id="location" placeholder="Location">
+      <button onclick="searchCars()">Search</button>
+      <button onclick="login()">LOGIN</button>
+    </nav>
+
+    <br><br><br><br><br><br>
+
+    <main>
+        <div class="car-list">
+          <div class="car-item">
+            <img style="width: 300px; height: 200px;" src="assets/car-rent-1.png" alt="Car 1">
+            <h2>Car 1</h2>
+            <p>Price: $700000</p>
+            <p>Year: 2022</p>
+          </div>
+
+          <div class="car-item">
+            <img style="width: 300px; height: 200px;" src="assets/car-rent-2.png" alt="Car 2">
+            <h2>Car 2</h2>
+            <p>Price: $400000</p>
+            <p>Year: 2018</p>
+          </div>
+
+          <div class="car-item">
+            <img src="assets/car-rent-3.png" alt="Car 3">
+            <h2>Car 3</h2>
+            <p>Price: $1000000</p>
+            <p>Year: 2023</p>
+          </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="box">
+            <p>&copy; 2023 Car Retail</p>
+            <h4> contact us</h4>
+            <ul class="links">
+                <li><a href="">facebook </a></li>
+                <li><a href="">youtube</a></li>
+                <li><a href="">gmail</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="javascript/index.js"></script>
+   
+</body>
+</html>

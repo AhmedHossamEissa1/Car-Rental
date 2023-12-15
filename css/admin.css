@@ -1,0 +1,157 @@
+nav {
+    background-color: #303335;
+    color: #8a2828;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 10px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    margin-bottom: 20px;
+  }
+
+  nav select, nav input[type="number"], nav input[type="text"], nav button {
+    padding: 10px;
+    border-radius: 20px;
+    border: none;
+    margin-right: 30px;
+    font-size: 16px;
+  }
+
+ 
+
+  nav button {
+    background-color: #f44336;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 170px;
+    height: 50px;
+  }
+
+  nav button:hover {
+    background-color: #ff665a;
+  }
+
+  .logo {
+    width: 100px;
+    height: auto;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.container {
+  display: grid;
+  grid-template-rows: 1fr 5fr 1fr;
+  grid-template-columns: 1fr 2fr; /* Updated */
+  grid-template-areas:
+    "header header"
+    "aside main"
+    "footer footer";
+  grid-gap: .75em;
+}
+
+header {
+  grid-area: header;
+}
+
+nav {
+  grid-area: aside;
+  background-color: #303335;
+}
+
+main {
+  grid-area: main;
+  background-color: lightblue;
+  width: calc(2 * 100% / 3); /* Updated */
+}
+aside {
+  margin-top: 50px;
+  grid-area: aside;
+  background-color: #303335;
+  width: calc(100% / 3); /* Updated */
+}
+aside span {
+    margin-top: 20px;
+    font-weight: bold;
+}
+aside .box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 10px;
+  list-style: none;
+}
+
+aside .box li  {
+  margin-top: 18px;
+}
+.menu-text:hover{
+    cursor: pointer;
+
+}
+aside .box li  a{
+    text-decoration: none;
+    color: white;
+}
+footer {
+  grid-area: footer;
+}
+
+
+
+
+
+
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: -5px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    position: fixed;
+    left: 0px;
+    z-index: 999;
+}
+footer .box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    padding-left: 8px;
+}
+footer .box h4{
+    text-align: center;
+    margin-left: 100px;
+}
+footer .links {
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+   
+}
+footer .links li{
+margin-right: 20px;
+}
+footer .links a{
+ color: white;
+  text-decoration: none;
+}
