@@ -8,8 +8,8 @@ function searchCars()
       console.log(`Searching for cars with salary range from ${salaryFrom} to ${salaryTo}, type: ${carType}, location: ${location}`);
     }
 
-function login()
-{
-        window.location.href = "/login.html";
-    }
+function login() {
+  window.location.href = "login.html";
+}
+
   

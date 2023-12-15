@@ -1,0 +1,76 @@
+CREATE TABLE OFFICE(
+    office_id INT PRIMARY KEY AUTO_INCREMENT,
+    country VARCHAR(255), 
+    state VARCHAR(255)
+);
+CREATE TABLE office_phone(
+    office_id INT,
+    phone_no VARCHAR(120),
+    PRIMARY KEY(office_id,phone_no),
+    FOREIGN key (office_id) REFERENCES office (office_id)
+);
+
+CREATE TABLE car(
+    car_id INT PRIMARY KEY AUTO_INCREMENT,
+    `year` year,
+    model VARCHAR(255),
+    car_status varchar(255),
+    plate_id INT,
+    price_per_day FLOAT,
+    image VARCHAR(255),
+    office_id INT,
+    FOREIGN key (office_id) REFERENCES office (office_id)
+   
+);
+
+CREATE TABLE admin(
+	admin_id INT PRIMARY KEY AUTO_INCREMENT,
+    Fname varchar(255),
+     Lname varchar(255),
+    email varchar(255) UNIQUE,
+    `password` varchar(255)
+);
+
+CREATE TABLE `user`(
+	user_id INT PRIMARY KEY AUTO_INCREMENT,
+    Fname varchar(255),
+     Lname varchar(255),
+    email varchar(255) UNIQUE,
+    `password` varchar(255),
+     country VARCHAR(255), 
+    state VARCHAR(255)
+);
+
+
+CREATE TABLE user_phone(
+    user_id INT,
+    phone_no VARCHAR(120),
+    PRIMARY KEY(user_id,phone_no),
+    FOREIGN key (user_id) REFERENCES `user` (user_id)
+);
+
+CREATE TABLE reservation(
+    reservation_id INT PRIMARY KEY AUTO_INCREMENT,
+    reservation_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+     pickup_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+     return_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    admin_id INT,
+     car_id INT,
+     user_id INT,
+    office_id INT,
+     FOREIGN key (admin_id) REFERENCES admin (admin_id),
+     FOREIGN key (car_id) REFERENCES car (car_id),
+     FOREIGN key (user_id) REFERENCES `user` (user_id),
+    FOREIGN key (office_id) REFERENCES office (office_id)
+);
+
+CREATE TABLE payment(
+  paymentstaus varchar(255),
+  remaining float,
+   reservation_id INT,
+   PRIMARY key (paymentstaus,reservation_id),
+   FOREIGN KEY (reservation_id) REFERENCES reservation (reservation_id)
+);
+
+
+
