@@ -4,8 +4,16 @@
   padding: 0px;
 }
 
+:root{
+
+    --main-color:#0C121C;
+    --second-color:#1E293B;
+    --third-color:#7148FC;
+
+}
+
 nav {
-  background-color: #303335;
+  background-color: var(--main-color);
   color: #8a2828;
   display: flex;
   justify-content: space-between;
@@ -48,39 +56,29 @@ nav button:hover {
   width: 50px;
   height: auto;
 }
-
-.container {
+/* start grid */
+.grid-container {
   display: grid;
-  grid-template-rows: 1fr 5fr 1fr;
-  grid-template-columns: 1fr 4fr;
-  grid-template-areas:
-    "header header"
-    "aside main"
-    "footer footer";
+  /* grid-template-columns: 1fr 4fr; */
+   grid-template-areas: "aside main main main main main main";
   grid-gap: 0.75em;
-}
-
-header {
-  grid-area: header;
-}
-
-nav {
-  grid-area: aside;
-  background-color: #303335;
+  height: 100vh;
+  margin-bottom: 30px;
 }
 
 main {
+
   grid-area: main;
   background-color: lightblue;
-  width: calc(4 * 100% / 5);
   width: 100%;
+  height: 100%;
 }
+
 aside {
   margin-top: 2px;
   padding: 5px;
   grid-area: aside;
-  background-color: #303335;
-  width: calc(1 * 100% / 5);
+  background-color: var(--second-color);
   width: 100%;
 }
 aside span {
@@ -96,7 +94,9 @@ aside .box {
 }
 
 aside .box li {
-  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+    margin-top: 30px;
 }
 .menu-text:hover {
   cursor: pointer;
@@ -104,13 +104,49 @@ aside .box li {
 aside .box li a {
   text-decoration: none;
   color: white;
+
 }
+aside .box li .date{
+  background-color: #B8BFC6;
+  border-radius: 20%;
+  -webkit-border-radius: 20%;
+  -moz-border-radius: 20%;
+  -ms-border-radius: 20%;
+  -o-border-radius: 20%;
+  margin-left: 0px;
+  padding: 7px;
+  border: none;
+  box-shadow: 5px 5px 8px #888888;
+  margin-top: 10px;
+  width: 20%;
+}
+aside .go{
+  padding: 10px;
+  margin-top: 45px;
+  margin-left: 10px;
+  background-color: var(--third-color);
+}
+
+aside .go:hover{
+  transition: 1s;
+  background-color: #4f1df3;
+  -webkit-transition: 1s;
+  -moz-transition: 1s;
+  -ms-transition: 1s;
+  -o-transition: 1s;
+}
+
+/* end grid */
+
+
+
+/*Start footer */
 footer {
   grid-area: footer;
 }
 
 footer {
-  background-color: #333;
+  background-color:  var(--main-color);
   color: white;
   text-align: center;
   padding: 10px; /* Adjust padding as needed */
@@ -120,16 +156,6 @@ footer {
   height:60px;
 }
 
-footer {
-  background-color: #333;
-  color: white;
-  text-align: center;
-  padding: 10px; /* Adjust padding as needed */
-  width: 100%;
-  z-index: 999;
-  left: 0px;
-  height:60px;
-}
 
 footer .box {
   display: flex;
@@ -155,3 +181,4 @@ footer .links a {
   color: rgb(208, 208, 208);
   text-decoration: none;
 }
+/* end footer */

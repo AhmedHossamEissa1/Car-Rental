@@ -1,3 +1,10 @@
+:root{
+
+    --main-color:#0C121C;
+    --second-color:#1E293B;
+    --third-color:#7148FC;
+
+}
 *{
   box-sizing: border-box;
   margin: 0px;
@@ -5,12 +12,12 @@
 }
 
 nav {
-  background-color: #303335;
+  background-color: var(--main-color);
   color: #8a2828;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px 5px;
+  padding: 2px 2px;
   width: 100%;
   position: fixed;
   top: 0;
@@ -22,11 +29,15 @@ nav select,
 nav input[type="number"],
 nav input[type="text"],
 nav button {
-  padding: 10px;
+  padding: 5px;
   border-radius: 20px;
   border: none;
   margin-right: 30px;
   font-size: 16px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
 }
 
 nav button {
@@ -34,8 +45,8 @@ nav button {
   color: white;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  width: 170px;
-  height: 50px;
+  width: 130px;
+  height: 30px;
 }
 
 nav button:hover {
@@ -75,7 +86,7 @@ form button {
 }
 
 footer {
-  background-color: #333;
+  background-color: var(--main-color);;
   color: white;
   text-align: center;
   padding: 10px; 
@@ -166,3 +177,4 @@ main {
   height: auto;
   margin-bottom: 10px;
 }
+

@@ -1,5 +1,5 @@
 function login() {
-  window.location.href = "/login.html";
+  window.location.href = "login.html";
 }
 
 function searchCars() {

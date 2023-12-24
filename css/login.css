@@ -1,3 +1,10 @@
+:root{
+
+    --main-color:#0C121C;
+    --second-color:#1E293B;
+    --third-color:#7148FC;
+
+}
 *{
   box-sizing: border-box;
   margin: 0px;
@@ -5,7 +12,7 @@
 }
 
  nav {
-      background-color: #303335;
+      background-color: var(--main-color);;
       color: #8a2828;
       display: flex;
       justify-content: space-between;
@@ -306,7 +313,7 @@ input {
 } */ 
 
 footer {
-  background-color: #333;
+  background-color: var(--main-color);;
   color: white;
   text-align: center;
   padding: 10px; 

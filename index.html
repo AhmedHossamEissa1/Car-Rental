@@ -11,6 +11,12 @@
 
     <nav>
       <img src="assets/vendor-8.png" alt="Company Logo" class="logo">
+
+  <form action="backend/search.php" method="POST">
+    <input type="text" name="text" placeholder="search by and of car specs">
+    <button type="submit" name="submit">Search</button>
+  </form>
+
       <!-- <input type="number" id="salary-from" placeholder="Salary From">
       <input type="number" id="salary-to" placeholder="Salary To">
       <select id="car-type">
@@ -19,7 +25,8 @@
         <option value="hatchback">Hatchback</option>
       </select>
       <input type="text" id="location" placeholder="Location"> -->
-      <button ><a href="search.html">Search</a></button>
+      <!-- <button ><a href="search.html">Search</a></button> -->
+      <button onclick="search()">Search Page</button>
       <button onclick="login()">LOGIN</button>
       
     </nav>
@@ -51,6 +58,9 @@
         </div>
     </main>
 
+
+
+
     <footer>
       <div class="box">
         <p>&copy; 2023 Car Retail</p>
@@ -73,6 +83,11 @@
     </footer>
 
     <script src="javascript/index.js"></script>
+    <script>
+      function search() {
+  window.location.href = "search.html";
+}
+    </script>
    
 </body>
 </html>

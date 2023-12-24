@@ -12,8 +12,3 @@ function login() {
   window.location.href = "login.html";
 }
 
-
-
-function searchAs() {
-  window.location.href = "search.html";
-}

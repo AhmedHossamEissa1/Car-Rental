@@ -17,7 +17,8 @@
         <option value="hatchback">Hatchback</option>
       </select>
       <input type="text" id="location" placeholder="Location"> -->
-      <button ><a href="search.html">Search</a></button>
+      <!-- <button ><a href="search.html">Search</a></button> -->
+      <button onclick="search()">Search Page</button>
       <button onclick="login()">LOGIN</button>
     </nav>
     <!-- <div class="container" id="container">
@@ -121,5 +122,10 @@
     </footer>
 
     <script src="javascript/login.js"></script>
+        <script>
+      function search() {
+  window.location.href = "search.html";
+}
+    </script>
   </body>
 </html>

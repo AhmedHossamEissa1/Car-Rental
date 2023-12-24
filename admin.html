@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Admin page</title>
     <link rel="stylesheet" href="css/admin.css">
 </head>
 <body>
     
 
     
-    <header>
+
     <nav>
       <img src="assets/vendor-8.png" alt="Company Logo" class="logo">
       <!-- <input type="number" id="salary-from" placeholder="Salary From">
@@ -21,21 +21,52 @@
         <option value="hatchback">Hatchback</option>
       </select>
       <input type="text" id="location" placeholder="Location"> -->
-      <button ><a href="search.html">Search</a></button>
+      <button onclick="search()">Search Page</button>
       <button onclick="login()">LOGIN</button>
     </nav>
-    </header>
+    
+    <br><br><br><br>
+
+
+
+
+
+    <div class="grid-container">
     <aside>
+       <form id="submit" action="admin.php" method="post">   <!-- make admin.php to handle requests-->
         <span class="menu-text">ADMIN MENU</span>
         <ul class="box">
-            <li><a href="#"> service 1 or query</a></li>
-            <li><a href="#"> service 1 or query</a></li>
-            <li><a href="#"> service 1 or query</a></li>
-            <li><a href="#"> service 1 or query</a></li>
-            <li><a href="#"> service 1 or query</a></li>
+          
+            <li><a href="#" onclick="myFunction()"> All reservations (including all car and customer
+information)
+            </a>
+            <input class="date" type="date">
+          </li>
+            <!-- <li><a href="#" onclick="myFunction()"> service 2 or query</a></li> -->
+            <li><a href="#"> All reservations (including all car 
+information)</a>
+                          <input class="date" type="date">
+            </li>
+            <li><a href="#"> The status of all cars</a>
+                          <input class="date" type="date">
+            </li>
+
+             <li><a href="#" > All reservations of specific customer </a>
+            </li>
+
+            <li><a href="#" > Daily payments within specific period.</a>
+                        <input class="date" type="date">
+            </li>
+
         </ul>
+        <input class="go" type="submit" value="Submit">
+        </form>
     </aside>
-    <main>tables from queries</main>
+
+    <main>tables from queries gggg</main>
+
+    </div>
+
     <footer>
       <div class="box">
         <p>&copy; 2023 Car Retail</p>
@@ -59,5 +90,12 @@
 
     
     <script src="javascript/admin.js"></script>
+        <script>
+      function search() {
+  window.location.href = "search.html";
+
+   document.getElementById("submit").submit(); 
+}
+    </script>
 </body>
 </html>
