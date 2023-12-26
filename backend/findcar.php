@@ -1,13 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Car Rental Search</title>
-  <link rel="stylesheet" href="css/search.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
+
+
+<style>
+
+:root{
+
+--main-color:#0C121C;
+--second-color:#1E293B;
+--third-color:#7148FC;
+}
+
+
+.php1{
+    margin-top: 50px;
+}
+*{
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+nav {
+      background-color: var(--main-color);;
+      color: #8a2828;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 999;
+      height: 80px;
+    }
+
+    nav select,
+    nav input[type="number"],
+    nav input[type="text"],
+    nav button {
+      padding: 10px;
+      border-radius: 20px;
+      border: none;
+      margin-right: 30px;
+      font-size: 16px;
+    }
+
+    nav button {
+      background-color: #f44336;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 170px;
+      height: 50px;
+    }
+
+    nav button:hover {
+      background-color: #ff665a;
+    }
+
+    .logo {
+      width: 70px;
+      height: auto;
+    }
+
+    footer {
+  background-color: var(--main-color);;
+  color: white;
+  text-align: center;
+  padding: 10px; 
+  padding-bottom: 55px;
+  width: 100%;
+  z-index: 999;
+  left: 0px;
+  height:60px;
+  margin-top: 50px;
+}
+
+footer .box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+}
+
+footer .box h4 {
+  text-align: center;
+  margin-left: 100px;
+}
+
+footer .links {
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+}
+
+footer .links li {
+  margin-right: 20px;
+}
+
+footer .links a {
+  color: white;
+  text-decoration: none;
+}
+
+
+</style>
 <body>
-  <nav>
-    <img src="assets/vendor-8.png" alt="Company Logo" class="logo">
+<nav>
+    <img src="../assets/vendor-8.png" alt="Company Logo" class="logo">
 
 <form action="backend/search.php" method="POST">
   <input type="text" name="text" placeholder="search by and of car specs">
@@ -18,45 +124,70 @@
     <button onclick="login()">LOGIN</button>
     
   </nav>
-  <br><br><br>
-  <div class="container">
-    <h1>Car Rental Search</h1>
+
+
+  
 
 
 
-    <form action="backend/findcar.php" method="post" >
-      <label for="year">Year:</label>
-      <input type="number" id="year" name="year">
-      
-      <label for="model">Model:</label>
-      <select id="model" name="model">
-        <option value="Toyota">toyota</option>
-        <option value="BMW">bmw</option>
-        <!-- Add more options -->
-      </select>
-      
-      <label for="status">Status:</label>
-      <select id="status" name="status">
-        <option value="Available">Available</option>
-        <option value="Rented">Rented</option>
-      </select>
-      
-      <label for="price-from">Price per Day - From:</label>
-      <input type="number" id="price-from" name="price-from">
-      
-      <label for="price-to">Price per Day - To:</label>
-      <input type="number" id="price-to" name="price-to">
-      
-      <label for="country">Country:</label>
-      <input type="text" id="country" name="country">
-      
-      <label for="state">State:</label>
-      <input type="text" id="state" name="state">
-      
-      <input type="submit" value="Search">
-    </form>
-  </div>
-  <footer>
+<div class="php1">
+
+
+
+<?php 
+
+// Establish connection to your MySQL database
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "test1";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Retrieve form inputs
+$model = $_POST['model']; // You can retrieve other inputs in a similar manner
+$year1 = $_POST['year'];
+$status = $_POST['status'];
+$pricefrom = $_POST['price-from'];
+$priceto = $_POST['price-to'];
+$country = $_POST['country'];
+$state = $_POST['state'];
+
+
+// SQL query to search for cars based on model
+$sql = "SELECT * FROM car as c
+join OFFICE as o on o.office_id=c.office_id
+WHERE model like '$model%' and `year`='$year1' and car_status='$status' and price_per_day between '$pricefrom' and '$priceto' and country='$country' and `state`='$state'  " ; // Modify this query based on your table structure and search criteria
+
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // Output data of each row
+    while ($row = $result->fetch_assoc()) {
+        // Display car data
+        echo "<p>Year: " . $row["year"] . "</p>";
+        echo "<p>Model: " . $row["model"] . "</p>";
+        echo "<p>Status: " . $row["car_status"] . "</p>";
+        echo "<p>Price per Day: " . $row["price_per_day"] . "</p>";
+        echo "<p>Country: " . $row["country"] . "</p>";
+        echo "<p>State: " . $row["state"] . "</p>";
+        // Add other fields as needed
+    }
+} else {
+    echo "No cars found with the specified criteria.";
+}
+
+$conn->close();
+?>
+</div>
+
+<footer>
     <div class="box">
       <p>&copy; 2023 Car Retail</p>
       <h4>contact us</h4>
@@ -76,5 +207,6 @@
       </ul>
     </div>
   </footer>
+    
 </body>
 </html>
