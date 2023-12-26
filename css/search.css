@@ -1,3 +1,4 @@
+/* Basic reset and styles */
 :root{
 
     --main-color:#0C121C;
@@ -5,11 +6,113 @@
     --third-color:#7148FC;
 
 }
-*{
+body {
+  font-size: 30px;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-image: url('/assets//bc.jpg'); /* Replace 'car-background.jpg' with your background image */
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+}
+
+.container {
+  width: 80%;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+label,
+input,
+select {
+  margin-bottom: 10px;
+  margin-left: 280px;
+  width: calc(30% - 150px);
+}
+
+input[type="number"],
+input[type="text"],
+select {
+  width: 500px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+}
+
+input[type="submit"] {
+  width: 20%;
+  margin-top: 10px;
+  margin-left: 500px;
+  padding: 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 22px;
+}
+
+input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+footer {
+  background-color: var(--main-color);;
+  color: white;
+  text-align: center;
+  padding: 10px; 
+  padding-bottom: 55px;
+  width: 100%;
+  z-index: 999;
+  left: 0px;
+  height:60px;
+  margin-top: 50px;
+}
+
+footer .box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+}
+
+footer .box h4 {
+  text-align: center;
+  margin-left: 100px;
+}
+
+footer .links {
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+}
+
+footer .links li {
+  margin-right: 20px;
+}
+
+footer .links a {
+  color: white;
+  text-decoration: none;
+}
+/* {
   box-sizing: border-box;
   margin: 0px;
   padding: 0px;
-}
+} */
 
  nav {
       background-color: var(--main-color);;
@@ -57,44 +160,10 @@
 
 
 
-    footer {
-  background-color: var(--main-color);;
-  color: white;
-  text-align: center;
-  padding: 10px; 
-  width: 100%;
-  z-index: 999;
-  left: 0px;
-  height:60px;
-  margin-top: 50px;
-}
-
-    footer .box {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      list-style: none;
-    }
-
-    footer .box h4 {
-      text-align: center;
-      margin-left: 100px;
-    }
-
-    footer .links {
-      display: flex;
-      list-style: none;
-      justify-content: space-between;
-    }
-
-    footer .links li {
-      margin-right: 20px;
-    }
-
-    footer .links a {
-      color: white;
-      text-decoration: none;
-    }
+/* 
+*
 
 
 
+ */
+ 
