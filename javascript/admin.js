@@ -5,9 +5,13 @@
     
 
 
-function login() {
-  window.location.href = "login.html";
+
+function logout() {
+  console.log("Logout function called");
+  window.location.href = "index.html";
+
 }
+
 
 function searchCars() {
   window.location.href = "search.html";

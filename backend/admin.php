@@ -13,10 +13,10 @@
 
 
 
-    <nav>
+<nav>
         <img src="../assets/vendor-8.png" alt="Company Logo" class="logo">
-        <button onclick="search()">Search Page</button>
-        <button onclick="login()">LOGIN</button>
+        <button onclick="logout()">LOGOUT</button>
+     
     </nav>
 
     <br><br><br><br>
@@ -35,30 +35,36 @@
 
 
                     </li>
+                    <label >From:</label>
+                    <input class="date" type="date" name="date1">
+                    <label >To:</label>
+                    <input class="date" type="date" name="date2">
                     <li>2- All reservations (including all car <br> information) in specified period
 
                     </li>
+                    <label >From:</label>
+                    <input class="date" type="date" name="date3">
+                    <label >To:</label>
+                    <input class="date" type="date" name="date4">
                     <li>3- The status of all cars in specified day
 
                     </li>
+                    <label ></label>
+                    <input class="date" type="date" name="date5">
 
                     <li>4- All reservations of specific customer
-                        <br>
-                        <input class="co-no" type="number" name="cus_no">
+                        
+                        
                     </li>
+                    <input class="co-no" type="number" name="cus_no">
 
                     <li>5- Daily payments within specific period in <br> specified period
 
                     </li>
-
-                    <div class="query">
-                        <label for="">Enter the number of the service </label>
-                        <input class="q" type="text" name="query_no" required placeholder="Service number">
-                    </div>
-                    <label for="">From:</label>
-                    <input class="date" type="date" name="date1">
-                    <label for="">To:</label>
-                    <input class="date" type="date" name="date2">
+                    <label >From:</label>
+                    <input class="date" type="date" name="date6">
+                    <label >To:</label>
+                    <input class="date" type="date" name="date7">
 
                 </ul>
                 <input class="go" type="submit" value="Get result" name="submit">
@@ -70,6 +76,7 @@
             <form action="admin.php" method="post">
                 <button class="up" name="update">Update car status</button>
             </form>
+ 
         </aside>
 
         <main>
@@ -77,11 +84,11 @@
 
 
             <?php          //start php!!!!
-
+ 
             function drawTable($row_new, $query_new)  //function to draw tables
             {
                 $numColumns = mysqli_num_fields($query_new); //get number of columns
-                echo '<table style="width:93%">';
+                echo '<table style="width: 96px;%">';
                 echo '<tr>';
                 for ($i = 0; $i < $numColumns; $i++) {
                     $fieldName = mysqli_fetch_field_direct($query_new, $i)->name;
@@ -98,7 +105,7 @@
                         echo '</tr>';
                     }
                 } while ($row_new = mysqli_fetch_assoc($query_new));   //put all rows in table
-
+            
             }
 
             function addCar()
@@ -124,10 +131,11 @@
             <label for="office_id">office ID</label>
             <input class="i6" type="text" name="office_id">
             
-            <label for="img">Upload car image</label>
-            <input type="file" id="img" name="img" accept="image/*">
-
-            <button name="add_car">Add car</button>
+            <label for="img">Car Image Name</label>
+            <input type="text" id="img" name="file_name">
+        
+            <button type="submit" name="add_car">Add car</button>
+        </form>
         </form>
 
     </div>';     //add new car!!
@@ -153,6 +161,7 @@
             $userName = "root";
             $password = "";
             $dbName = "car_rental";
+            
 
             $con = mysqli_connect($serverName, $userName, $password, $dbName);
             if (mysqli_connect_errno()) {
@@ -161,22 +170,22 @@
             }
 
             if (isset($_POST['submit'])) {
-                $query_no = $_POST['query_no'];
-                $date1 = $_POST['date1'];
-                $date2 = $_POST['date2'];
+                
 
 
                 //start !!query one!!!
-                if ($query_no == 1) {
-                    if ($date1 == NULL || $date2 == NULL) {
+                if (!empty($_POST['date1']) && !empty($_POST['date2'])){
+                    $fromDate1 = $_POST['date1'];
+                    $toDate2 = $_POST['date2'];
+            
                         echo '<h1>';
                         echo 'Enter a valid period';
                         echo '</h1>';
-                    } else {
+                  
                         echo 'Result of Service number 1: <br><br>';
-                        $query = mysqli_query($con, "SELECT * FROM reservation AS r JOIN car AS c ON r.car_id =c.car_id
-                        JOIN user as u ON r.user_id = u.user_id
-                        WHERE r.reservation_date BETWEEN '$date1' AND '$date2';
+                        $query = mysqli_query($con, "SELECT r.reservation_date,r.pickup_date,r.return_date,c.*,u.Fname,u.Lname,u.user_id,u.email,u.country FROM reservation 
+                        AS r JOIN car AS c ON r.car_id =c.car_id JOIN user as u ON r.user_id = u.user_id WHERE (r.pickup_date BETWEEN '$fromDate1' AND '$toDate2')
+                         or (r.return_date BETWEEN '$fromDate1' AND '$toDate2');
                         ");
                         if ($query) {
                             $row = mysqli_fetch_assoc($query);
@@ -187,20 +196,17 @@
                             echo "Failed to get The Table";
                         }
                     }
-                }
+                
                 //end !!query one!!!
 
 
                 //start !!query 2!!!
-                else   if ($query_no == 2) {
-                    if ($date1 == NULL || $date2 == NULL) {
-                        echo '<h1>';
-                        echo 'Enter a valid period';
-                        echo '</h1>';
-                    } else {
+                else   if (!empty($_POST['date3']) && !empty($_POST['date4'])) {
+                    $fromDate1 = $_POST['date3'];
+                    $toDate2 = $_POST['date4'];
                         echo 'Result of Service number 2: <br><br>';
                         $query = mysqli_query($con, "SELECT * FROM reservation AS r JOIN car AS c ON r.car_id =c.car_id
-                        WHERE r.reservation_date BETWEEN '$date1' AND '$date2';
+                        WHERE (r.pickup_date BETWEEN  '$fromDate1' AND '$toDate2') or( r.return_date BETWEEN '$fromDate1' AND '$toDate2');
                         ");
                         if ($query) {
                             $row = mysqli_fetch_assoc($query);
@@ -211,27 +217,24 @@
                             echo "Failed to get The Table";
                         }
                     }
-                }
+                
                 //end !!query 2!!!
 
 
                 //start !!query 3!!!
-                else   if ($query_no == 3) {
-                    if ($date1 == NULL) {
-                        echo '<h1>';
-                        echo 'Enter a valid Day to get result';
-                        echo '</h1>';
-                    } else {
+                else   if (!empty($_POST['date5']) ) {
+                    $fromDate1 = $_POST['date5'];
+                   
                         echo 'Result of Service number 3: <br><br>';
                         $query = mysqli_query($con, "SELECT 
-                            CASE 
-                                WHEN '' BETWEEN r.pickup_date AND r.return_date THEN 'Rented'
-                                ELSE 'Available'
-                            END AS car_status
-                        FROM 
-                            reservation r
-                        LEFT JOIN 
-                        car c ON r.car_id = c.car_id;");
+                        CASE 
+                            WHEN '$fromDate1' BETWEEN r.pickup_date AND r.return_date THEN 'Rented'
+                            ELSE 'Available'
+                        END AS car_status
+                    FROM 
+                        car AS c
+                    LEFT JOIN 
+                        reservation AS r ON r.car_id = c.car_id;");
                         if ($query) {
                             $row = mysqli_fetch_assoc($query);
 
@@ -241,13 +244,13 @@
                             echo "Failed to get The Table";
                         }
                     }
-                }
+                
                 //end !!query 3!!!
 
 
 
                 //start !!query 4!!!
-                else   if ($query_no == 4) {
+                else   if (!empty($_POST['cus_no'])) {
                     $customer_number = $_POST['cus_no'];
                     echo 'Result of Service number 4: <br><br>';
                     $query = mysqli_query($con, "SELECT u.*,r.reservation_id,r.reservation_date,c.model,c.plate_id from reservation
@@ -266,17 +269,14 @@
 
 
                 //start !!query 5!!!
-                else   if ($query_no == 5) {
-                    if ($date1 == NULL || $date2 == NULL) {
-                        echo '<h1>';
-                        echo 'Enter a valid period';
-                        echo '</h1>';
-                    } else {
+                else   if (!empty($_POST['date6']) && !empty($_POST['date7'])) {
+                {  $fromDate1 = $_POST['date6'];
+                    $toDate2 = $_POST['date7'];
                         echo 'Result of Service number 5: <br><br>';
                     $query = mysqli_query($con, "SELECT p.*, r.user_id, r.car_id 
                     FROM payment AS p 
                     INNER JOIN reservation AS r ON r.reservation_id = p.reservation_id
-                    WHERE p.payment_date BETWEEN '$date1' AND '$date2';
+                    WHERE p.payment_date BETWEEN '$fromDate1' AND '$toDate2';
 ");
                         if ($query) {
                             $row = mysqli_fetch_assoc($query);
@@ -291,7 +291,7 @@
                 //end !!query 5!!!
                 else {
                     echo '<h1>';
-                    echo 'invalid service number';
+                    echo 'invalid input';
                     echo '</h1>';
                 }
             } else  if (isset($_POST['add'])) {
@@ -304,13 +304,13 @@
                 $plate_id = $_POST['plate_id'];
                 $price_per_day = $_POST['price_per_day'];
                 $office_id = $_POST['office_id'];
-                $image = NULL;
+                $fileName = $_POST['file_name'];
 
                 error_reporting(E_ALL);
                 ini_set('display_errors', 1);
 
                 $sql = "INSERT INTO car (car_status, image, model,office_id,plate_id,price_per_day,`year`)
-                    VALUES ('$car_status','$image','$model','$office_id','$plate_id','$price_per_day','$year')";
+                    VALUES ('$car_status', '$fileName','$model','$office_id','$plate_id','$price_per_day','$year')";
 
                 if (mysqli_query($con, $sql)) {
                     echo
@@ -321,6 +321,7 @@
             } else  if (isset($_POST['update'])) {
                 update();
             }
+
             ?>
 
 
@@ -350,6 +351,8 @@
     </footer>
 
 
+
+
     <script src="javascript/admin.js"></script>
     <script>
         function search() {
@@ -357,6 +360,14 @@
 
             document.getElementById("submit").submit();
         }
+        
+
+function logout() {
+  console.log("Logout function called");
+  window.location.href = "../index.html";
+}
+
+    
     </script>
 </body>
 
