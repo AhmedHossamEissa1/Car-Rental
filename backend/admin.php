@@ -48,23 +48,23 @@
                     <input class="date" type="date" name="date4">
                     <li>3- The status of all cars in specified day
 
+                        <label >DAY </label>
+                        <input class="date" type="date" name="date5">
                     </li>
-                    <label ></label>
-                    <input class="date" type="date" name="date5">
 
                     <li>4- All reservations of specific customer
                         
                         
+                        <input class="co-no" type="number" name="cus_no">
                     </li>
-                    <input class="co-no" type="number" name="cus_no">
 
                     <li>5- Daily payments within specific period in <br> specified period
 
-                    </li>
                     <label >From:</label>
                     <input class="date" type="date" name="date6">
                     <label >To:</label>
                     <input class="date" type="date" name="date7">
+                    </li>
 
                 </ul>
                 <input class="go" type="submit" value="Get result" name="submit">
@@ -87,6 +87,7 @@
  
             function drawTable($row_new, $query_new)  //function to draw tables
             {
+                
                 $numColumns = mysqli_num_fields($query_new); //get number of columns
                 echo '<table style="width: 96px;%">';
                 echo '<tr>';
@@ -103,6 +104,9 @@
                             echo "<th>$columnValue</th>";
                         }
                         echo '</tr>';
+                    }
+                    else{
+                        echo '<There is no such result match in database';
                     }
                 } while ($row_new = mysqli_fetch_assoc($query_new));   //put all rows in table
             
@@ -136,15 +140,16 @@
         
             <button type="submit" name="add_car">Add car</button>
         </form>
-        </form>
 
     </div>';     //add new car!!
             }
 
             function update(){
                 echo '
-                <h1 class="up">Update car status:</h1>
-                <div class"choose">
+                <form id ="update" action="admin.php" method="post">
+            
+            <h1 class="up">Update car status:</h1>
+            <div class"choose">
                 
             <label class="up-label" for="car_status">Car Status:</label>
             <select name="car_status" id="car_status">
@@ -153,7 +158,13 @@
             <option value="rented">Rented</option>
             </select>
             </div>
+            <label>Enter car id you want to update</label>
+            <input type="text" name="car_id">
+
+            <button type="submit" name="update_car">update car</button>
+            </form>
                 ';
+                
             }
 
             session_start();
@@ -178,19 +189,21 @@
                     $fromDate1 = $_POST['date1'];
                     $toDate2 = $_POST['date2'];
             
-                        echo '<h1>';
-                        echo 'Enter a valid period';
-                        echo '</h1>';
+                        // echo '<h1>';
+                        // echo 'Enter a valid period';
+                        // echo '</h1>';
                   
                         echo 'Result of Service number 1: <br><br>';
                         $query = mysqli_query($con, "SELECT r.reservation_date,r.pickup_date,r.return_date,c.*,u.Fname,u.Lname,u.user_id,u.email,u.country FROM reservation 
                         AS r JOIN car AS c ON r.car_id =c.car_id JOIN user as u ON r.user_id = u.user_id WHERE (r.pickup_date BETWEEN '$fromDate1' AND '$toDate2')
-                         or (r.return_date BETWEEN '$fromDate1' AND '$toDate2');
+                        or (r.return_date BETWEEN '$fromDate1' AND '$toDate2');
                         ");
                         if ($query) {
                             $row = mysqli_fetch_assoc($query);
 
                             drawTable($row, $query);
+                            header("Location: admin.php");
+                            exit();
                         } else {
                             echo '<br>';
                             echo "Failed to get The Table";
@@ -212,21 +225,23 @@
                             $row = mysqli_fetch_assoc($query);
 
                             drawTable($row, $query);
+                        header("Location: admin.php");
+                        exit();
                         } else {
                             echo '<br>';
                             echo "Failed to get The Table";
                         }
                     }
-                
+
                 //end !!query 2!!!
 
 
                 //start !!query 3!!!
-                else   if (!empty($_POST['date5']) ) {
+                else   if (!empty($_POST['date5'])) {
                     $fromDate1 = $_POST['date5'];
-                   
-                        echo 'Result of Service number 3: <br><br>';
-                        $query = mysqli_query($con, "SELECT 
+
+                    echo 'Result of Service number 3: <br><br>';
+                    $query = mysqli_query($con, "SELECT 
                         CASE 
                             WHEN '$fromDate1' BETWEEN r.pickup_date AND r.return_date THEN 'Rented'
                             ELSE 'Available'
@@ -235,16 +250,16 @@
                         car AS c
                     LEFT JOIN 
                         reservation AS r ON r.car_id = c.car_id;");
-                        if ($query) {
-                            $row = mysqli_fetch_assoc($query);
+                    if ($query) {
+                        $row = mysqli_fetch_assoc($query);
 
-                            drawTable($row, $query);
-                        } else {
-                            echo '<br>';
-                            echo "Failed to get The Table";
-                        }
+                        drawTable($row, $query);
+                    } else {
+                        echo '<br>';
+                        echo "Failed to get The Table";
                     }
-                
+                }
+
                 //end !!query 3!!!
 
 
@@ -269,11 +284,12 @@
 
 
                 //start !!query 5!!!
-                else   if (!empty($_POST['date6']) && !empty($_POST['date7'])) {
-                {  $fromDate1 = $_POST['date6'];
-                    $toDate2 = $_POST['date7'];
+                else   if (!empty($_POST['date6']) && !empty($_POST['date7'])
+                ) { {
+                        $fromDate1 = $_POST['date6'];
+                        $toDate2 = $_POST['date7'];
                         echo 'Result of Service number 5: <br><br>';
-                    $query = mysqli_query($con, "SELECT p.*, r.user_id, r.car_id 
+                        $query = mysqli_query($con, "SELECT p.*, r.user_id, r.car_id 
                     FROM payment AS p 
                     INNER JOIN reservation AS r ON r.reservation_id = p.reservation_id
                     WHERE p.payment_date BETWEEN '$fromDate1' AND '$toDate2';
@@ -313,13 +329,31 @@
                     VALUES ('$car_status', '$fileName','$model','$office_id','$plate_id','$price_per_day','$year')";
 
                 if (mysqli_query($con, $sql)) {
+                    
                     echo
                     '<h2>Your car have been added successfully</h2>';
+                    header("Location: admin.php");
+                    exit();
                 } else {
                     echo "Failed to insert data: " . mysqli_error($con);
                 }
             } else  if (isset($_POST['update'])) {
                 update();
+            }
+            if (isset($_POST['update_car'])) {
+                $id = $_POST['car_id'];
+                $new_value = $_POST['car_status'];
+                $sql = "UPDATE car SET car_status = '$new_value' WHERE car.car_id = '$id'";
+                if (mysqli_query($con, $sql)) {
+                    
+                    echo
+                    '<h2>Your car have been updated successfully</h2>';
+                    header("Location: admin.php");
+                    exit();
+                } else {
+                    echo "Failed to update car: " . mysqli_error($con);
+                }
+
             }
 
             ?>
@@ -329,7 +363,7 @@
 
     </div>
 
-    <footer>
+    <!-- <footer>
         <div class="box">
             <p>&copy; 2023 Car Retail</p>
             <h4>contact us</h4>
@@ -348,7 +382,7 @@
                         </i> Instagram</a></li>
             </ul>
         </div>
-    </footer>
+    </footer> -->
 
 
 
