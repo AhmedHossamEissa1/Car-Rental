@@ -3,7 +3,9 @@
   margin: 0px;
   padding: 0px;
 }
-
+body{
+  background-color: #D6DEE7;
+}
 :root {
   --main-color: #0c121c;
   --second-color: #1e293b;
@@ -12,7 +14,7 @@
 /*start of tables style */
 
 table{
-  margin-left: 8px;
+  margin-left: 20px;
 }
 table, th, td {
   border:1px solid black;
@@ -66,10 +68,11 @@ nav button:hover {
 /* start grid */
 .grid-container {
   display: grid;
-  grid-template-areas: "aside main main main main main main";
+  grid-template-areas: "aside aside main main main main main";
   /* grid-gap: 0.75em; */
   height: 100vh;
   margin-bottom: 30px;
+  background-color: #D6DEE7;
 }
 .grid-container {
   flex: 1;
@@ -88,7 +91,7 @@ aside {
   padding: 5px;
   grid-area: aside;
   background-color: var(--second-color);
-  width: 100%;
+  width: 430px;
   height: 104.5%;
   margin-top: -15px;
   position: relative;
