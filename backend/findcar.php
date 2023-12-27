@@ -140,7 +140,7 @@ footer .links a {
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "test1";
+$dbname = "car_rental";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

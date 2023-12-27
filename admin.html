@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,14 +13,7 @@
 
     <nav>
       <img src="assets/vendor-8.png" alt="Company Logo" class="logo">
-      <!-- <input type="number" id="salary-from" placeholder="Salary From">
-      <input type="number" id="salary-to" placeholder="Salary To">
-      <select id="car-type">
-        <option value="sedan">Sedan</option>
-        <option value="suv">SUV</option>
-        <option value="hatchback">Hatchback</option>
-      </select>
-      <input type="text" id="location" placeholder="Location"> -->
+
       <button onclick="search()">Search Page</button>
       <button onclick="login()">LOGIN</button>
     </nav>
@@ -33,33 +26,40 @@
 
     <div class="grid-container">
     <aside>
-       <form id="submit" action="admin.php" method="post">   <!-- make admin.php to handle requests-->
+       <form id="submit" action="admin.php" method="post">   
         <span class="menu-text">ADMIN MENU</span>
         <ul class="box">
           
-            <li><a href="#" onclick="myFunction()"> All reservations (including all car and customer
-information)
-            </a>
-            <input class="date" type="date">
+            <li> All reservations (including all car and customer information)
+            
+           
           </li>
-            <!-- <li><a href="#" onclick="myFunction()"> service 2 or query</a></li> -->
-            <li><a href="#"> All reservations (including all car 
-information)</a>
-                          <input class="date" type="date">
+           
+            <li> All reservations (including all car information)
+                         
             </li>
-            <li><a href="#"> The status of all cars</a>
-                          <input class="date" type="date">
-            </li>
-
-             <li><a href="#" > All reservations of specific customer </a>
+            <li> The status of all cars
+                         
             </li>
 
-            <li><a href="#" > Daily payments within specific period.</a>
-                        <input class="date" type="date">
+             <li> All reservations of specific customer 
             </li>
+
+            <li> Daily payments within specific period
+                       
+            </li>
+
+            <div class="query">
+            <label for="">Enter the number of the service </label>
+            <input class="q" type="text" name="query_no" required placeholder="Service number">
+            </div>
+            <label for="">From:</label>
+             <input class="date" type="date" name="date1">
+             <label for="">To:</label>
+              <input class="date" type="date" name="date2">
 
         </ul>
-        <input class="go" type="submit" value="Submit">
+        <input class="go" type="submit" value="Get result">
         </form>
     </aside>
 
@@ -98,4 +98,4 @@ information)</a>
 }
     </script>
 </body>
-</html>
+</html> -->
