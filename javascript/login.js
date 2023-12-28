@@ -10,9 +10,9 @@
 //   );
 // }
 
-function login() {
-  window.location.href = "login.html";
-}
+// function login() {
+//   window.location.href = "login.php";
+// }
 
 function searchCars() {
   console.log("Search cars button clicked!");

@@ -28,7 +28,7 @@ nav {
 nav select,
 nav input[type="number"],
 nav input[type="text"],
-nav button {
+nav button{
   padding: 5px;
   border-radius: 20px;
   border: none;
@@ -40,7 +40,7 @@ nav button {
   -o-border-radius: 20px;
 }
 
-nav button {
+nav button{
   background-color: #f44336;
   color: white;
   cursor: pointer;
@@ -49,9 +49,32 @@ nav button {
   height: 30px;
 }
 
-nav button:hover {
+nav button:hover{
   background-color: #ff665a;
 }
+
+
+/* .btn {
+  padding: 5px;
+  border-radius: 20px;
+  border: none;
+  margin-right: 30px;
+  font-size: 16px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+
+.btn {
+  background-color: #f44336;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 130px;
+  height: 30px;
+} */
+
 
 .logo {
   width: 70px;

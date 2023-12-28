@@ -1,352 +1,153 @@
-:root{
-
-    --main-color:#0C121C;
-    --second-color:#1E293B;
-    --third-color:#7148FC;
-
-}
-*{
-  box-sizing: border-box;
-  margin: 0px;
-  padding: 0px;
-}
-
- nav {
-      background-color: var(--main-color);;
-      color: #8a2828;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 5px;
-      width: 100%;
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 999;
-      height: 80px;
-    }
-
-    nav select,
-    nav input[type="number"],
-    nav input[type="text"],
-    nav button {
-      padding: 10px;
-      border-radius: 20px;
-      border: none;
-      margin-right: 30px;
-      font-size: 16px;
-    }
-
-    nav button {
-      background-color: #f44336;
-      color: white;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      width: 170px;
-      height: 50px;
-    }
-
-    nav button:hover {
-      background-color: #ff665a;
-    }
-
-    .logo {
-      width: 70px;
-      height: auto;
-    }
-
-    header {
-      background-color: #f0f0f0;
-      padding: 20px;
-      text-align: center;
-    }
-
-    header img {
-      max-width: 100%;
-      height: auto;
-      margin-top: 20px;
-    }
-
-    form {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 20px;
-    }
-
-    form label,
-    form input,
-    form select,
-    form button {
-      margin: 5px;
-    }
-
-@import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
-
-
-
-/* body {
-  background: #f6f5f7;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  font-family: "Montserrat", sans-serif;
-  height: 100vh;
-  margin: -20px 0 50px;
-}
-
-h1 {
-  font-weight: bold;
+body {
   margin: 0;
-}
-
-h2 {
-  text-align: center;
-}
-
-p {
-  font-size: 14px;
-  font-weight: 100;
-  line-height: 20px;
-  letter-spacing: 0.5px;
-  margin: 20px 0 30px;
-}
-
-span {
-  font-size: 12px;
-}
-
-a {
-  color: #333;
-  font-size: 14px;
-  text-decoration: none;
-  margin: 15px 0;
-}
-
-button {
-  border-radius: 20px;
-  border: 1px solid #ff4b2b;
-  background-color: #ff4b2b;
-  color: #ffffff;
-  font-size: 12px;
-  font-weight: bold;
-  padding: 12px 45px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  transition: transform 80ms ease-in;
-}
-
-button:active {
-  transform: scale(0.95);
-}
-
-button:focus {
-  outline: none;
-}
-
-button.ghost {
-  background-color: transparent;
-  border-color: #ffffff;
-}
-
-form {
-  background-color: #ffffff;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
-  padding: 0 50px;
-  height: 100%;
-  text-align: center;
-}
-
-input {
-  background-color: #eee;
-  border: none;
-  padding: 12px 15px;
-  margin: 8px 0;
-  width: 100%;
+  height: 100vh;
+  background: url('../assets/login3.jpg') no-repeat center center fixed;
+  background-size: cover;
 }
 
 .container {
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  position: relative;
+  margin-right: auto; /* Add margin to the right, adjust as needed */
+  margin-left: 20px;  /* Adjust as needed to move the box slightly to the left */
+  background-color: transparent; /* Fully transparent background */
+  box-shadow: none; /* Remove box shadow if needed */
+  border-radius: 8px;
   overflow: hidden;
-  width: 768px;
-  max-width: 100%;
-  min-height: 480px;
-  margin: auto;
-  margin-top: 104px;
-
-  /* margin-bottom: 150px;
-  margin-top: 100px; */
-/* } */
-
-/* .form-container {
-  position: absolute;
-  top: 0;
-  height: 100%;
-  transition: all 0.6s ease-in-out;
+  width: 300px;
+  z-index: 1; /* Ensure the login box is above the background */
 }
 
-.sign-in-container {
-  left: 0;
-  width: 50%;
-  z-index: 2;
+
+
+header {
+  /* text-align: center; */
+  padding: 20px 1;
+  /* background-color: #333; */
+  color: #fff;
 }
 
-.container.right-panel-active .sign-in-container {
-  transform: translateX(100%);
+header img {
+  width: 90px;
+  height: 90px;
 }
 
-.sign-up-container {
-  left: 0;
-  width: 50%;
-  opacity: 0;
-  z-index: 1;
+.form-group {
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0); /* Fully transparent background */
 }
 
-.container.right-panel-active .sign-up-container {
-  transform: translateX(100%);
-  opacity: 1;
-  z-index: 5;
-  animation: show 0.6s;
+label {
+  display: block;
+  margin-bottom: 8px;
+  color: black; /* Adjust text color as needed */
+  font-size: large;
 }
 
-@keyframes show {
-  0%,
-  49.99% {
-    opacity: 0;
-    z-index: 1;
-  }
-
-  50%,
-  100% {
-    opacity: 1;
-    z-index: 5;
-  }
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: black; /* Adjust text color as needed */
 }
 
-.overlay-container {
-  position: absolute;
-  top: 0;
+button {
+  width: 100%;
+  background-color: rgba(32, 164, 241, 0.8); /*Slightly opaque purple, adjust as needed*/
+  /* background-color: dodgerblue; */
+  color: #fff;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: rgba(32, 164, 241, 0.8); /* Slightly opaque darker purple, adjust as needed */
+}
+
+.alert {
+  background-color: black;
+  color: #155724;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #c3e6cb;
+  border-radius: 4px;
+}
+
+.alertError {
+  position: fixed;
+  top: 50%;
   left: 50%;
-  width: 50%;
-  height: 100%;
-  overflow: hidden;
-  transition: transform 0.6s ease-in-out;
-  z-index: 100;
+  transform: translate(-50%, -50%);
+  background-color: black; /* Set the background color to black */
+  color: yellow; /* Set the text color to yellow */
+  padding: 0px; /* Increase padding for a larger size */
+  border-radius: 10px; /* Add border-radius for rounded corners */
 }
 
-.container.right-panel-active .overlay-container {
-  transform: translateX(-100%);
-}
 
-.overlay {
-  background: #ff416c;
-  background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
-  background: linear-gradient(to right, #ff4b2b, #ff416c);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: 0 0;
-  color: #ffffff;
-  position: relative;
-  left: -100%;
-  height: 100%;
-  width: 200%;
-  transform: translateX(0);
-  transition: transform 0.6s ease-in-out;
-}
 
-.container.right-panel-active .overlay {
-  transform: translateX(50%);
-}
-
-.overlay-panel {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 0 40px;
-  text-align: center;
-  top: 0;
-  height: 100%;
-  width: 50%;
-  transform: translateX(0);
-  transition: transform 0.6s ease-in-out;
-}
-
-.overlay-left {
-  transform: translateX(-20%);
-}
-
-.container.right-panel-active .overlay-left {
-  transform: translateX(0);
-}
-
-.overlay-right {
-  right: 0;
-  transform: translateX(0);
-}
-
-.container.right-panel-active .overlay-right {
-  transform: translateX(20%);
-}
-
-.social-container {
-  margin: 20px 0;
-}
-
-.social-container a {
-  border: 1px solid #dddddd;
-  border-radius: 50%;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 5px;
-  height: 40px;
-  width: 40px;
-} */ 
 
 footer {
-  background-color: var(--main-color);;
-  color: white;
   text-align: center;
-  padding: 10px; 
-  width: 100%;
-  z-index: 999;
-  left: 0px;
-  height:60px;
-  margin-top: 50px;
+  margin-top: 20px;
+  color: white;
 }
 
-    footer .box {
+.links {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.links li {
+  margin: 0 10px;
+}
+
+.links a {
+  color: #4a3aff;
+  text-decoration: none;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}
+
+
+    /* Custom CSS for circular radio buttons */
+    .circular-radio {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      list-style: none;
+      justify-content: space-around;
+      margin-top: 10px;
     }
 
-    footer .box h4 {
+    .circular-radio input[type="radio"] {
+      display: none;
+    }
+
+    .circular-radio label {
+      display: block;
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      background-color: #fff;
+      cursor: pointer;
       text-align: center;
-      margin-left: 100px;
+      line-height: 55px;
+
     }
 
-    footer .links {
-      display: flex;
-      list-style: none;
-      justify-content: space-between;
-    }
-
-    footer .links li {
-      margin-right: 20px;
-    }
-
-    footer .links a {
-      color: white;
-      text-decoration: none;
+    .circular-radio input[type="radio"]:checked + label {
+      background-color: #32a4f1;
+      color: #fff;
     }
