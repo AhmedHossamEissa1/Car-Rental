@@ -84,32 +84,40 @@
 
 
             <?php          //start php!!!!
- 
-            function drawTable($row_new, $query_new)  //function to draw tables
+
+            function drawTable($row_new, $query_new)
             {
-                
-                $numColumns = mysqli_num_fields($query_new); //get number of columns
+                $numColumns = mysqli_num_fields($query_new);
+
                 echo '<table style="width: 96px;%">';
                 echo '<tr>';
                 for ($i = 0; $i < $numColumns; $i++) {
                     $fieldName = mysqli_fetch_field_direct($query_new, $i)->name;
-                    echo "<th>$fieldName</th>";
+                    if ($fieldName !== "car_id") {
+                        echo "<th>$fieldName</th>";
+                    }
                 }
                 echo '</tr>';
 
                 do {
-                    if ($row_new != Null) {
+                    if ($row_new != null) {
                         echo '<tr>';
-                        foreach ($row_new as $columnValue) {
-                            echo "<td>$columnValue</td>";
+                        foreach ($row_new as $fieldName => $columnValue) {
+                            if ($fieldName !== "car_id") {
+                                if (str_contains($columnValue, "assets")) {
+                                    $width = 100;
+                                    $height = 100;
+                                    echo "<td><img src='../assets/car-rent-{$row_new['car_id']}.png' alt='photo' width='{$width}' height='{$height}' ></td>";
+                                } else {
+                                    echo "<td>$columnValue</td>";
+                                }
+                            }
                         }
                         echo '</tr>';
+                    } else {
+                        echo '<tr><td colspan="' . $numColumns . '">There is no such result match in the database</td></tr>';
                     }
-                    else{
-                        echo '<There is no such result match in database';
-                    }
-                } while ($row_new = mysqli_fetch_assoc($query_new));   //put all rows in table
-            
+                } while ($row_new = mysqli_fetch_assoc($query_new));
             }
 
             function addCar()

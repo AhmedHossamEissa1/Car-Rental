@@ -13,25 +13,37 @@
     function drawTable($row_new, $query_new)
     {
         $numColumns = mysqli_num_fields($query_new);
+        
         echo '<table style="width: 96px;%">';
         echo '<tr>';
         for ($i = 0; $i < $numColumns; $i++) {
             $fieldName = mysqli_fetch_field_direct($query_new, $i)->name;
-            echo "<th>$fieldName</th>";
+            if ($fieldName !== "car_id") {
+                echo "<th>$fieldName</th>";
+            }
         }
         echo '</tr>';
 
         do {
-            if ($row_new != Null) {
+            if ($row_new != null) {
                 echo '<tr>';
-                foreach ($row_new as $columnValue) {
-                    echo "<td>$columnValue</td>";
+                foreach ($row_new as $fieldName => $columnValue) {
+                    if ($fieldName !== "car_id") {
+                        if (str_contains($columnValue, "assets")) {
+                            $width = 100;
+                            $height = 100;
+                            echo "<td><img src='../assets/car-rent-{$row_new['car_id']}.png' alt='photo' width='{$width}' height='{$height}' ></td>";
+                        } else {
+                            echo "<td>$columnValue</td>";
+                        }
+                    }
                 }
                 echo '</tr>';
             } else {
-                echo '<There is no such result match in database';
+                echo '<tr><td colspan="' . $numColumns . '">There is no such result match in the database</td></tr>';
             }
         } while ($row_new = mysqli_fetch_assoc($query_new));
+
     }
 
     session_start();
@@ -50,7 +62,7 @@
         $inp = $_POST['text'];
         $query = mysqli_query(
             $con,
-            "SELECT car.year, car.model, car.car_status, car.price_per_day, car.office_id
+            "SELECT car.car_id,car.year, car.model, car.car_status, car.price_per_day, car.office_id,car.image
             FROM car
             WHERE '$inp' = `year` OR '$inp' = `car_status` OR '$inp' = `plate_id` OR model LIKE '%$inp%'
             OR '$inp' = `price_per_day`
@@ -76,7 +88,7 @@
 
         $query = mysqli_query(
             $con,
-            "SELECT c.`year`,c.model,c.car_status,c.price_per_day,c.office_id
+            "SELECT  c.car_id,c.`year`,c.model,c.car_status,c.price_per_day,c.office_id,c.image
             FROM car as c
             JOIN OFFICE as o on o.office_id=c.office_id
             WHERE model LIKE '$model%' and `year`='$year' and price_per_day between '$price_from' and '$price_to' and country='$country' and `state`='$state' "
