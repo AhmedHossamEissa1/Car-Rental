@@ -101,7 +101,7 @@
                     if ($row_new != Null) {
                         echo '<tr>';
                         foreach ($row_new as $columnValue) {
-                            echo "<th>$columnValue</th>";
+                            echo "<td>$columnValue</td>";
                         }
                         echo '</tr>';
                     }
@@ -158,10 +158,10 @@
             <option value="rented">Rented</option>
             </select>
             </div>
-            <label>Enter car id you want to update</label>
-            <input type="text" name="car_id">
+            <label class="up-label" >Enter car id you want to update</label>
+            <input class="up-inp" type="text" name="car_id" placeholder="car ID">
 
-            <button type="submit" name="update_car">update car</button>
+            <button class="btn3" type="submit" name="update_car">update car</button>
             </form>
                 ';
                 
@@ -202,8 +202,8 @@
                             $row = mysqli_fetch_assoc($query);
 
                             drawTable($row, $query);
-                            header("Location: admin.php");
-                            exit();
+                            // header("Location: admin.php");
+                            // exit();
                         } else {
                             echo '<br>';
                             echo "Failed to get The Table";
@@ -225,8 +225,8 @@
                             $row = mysqli_fetch_assoc($query);
 
                             drawTable($row, $query);
-                        header("Location: admin.php");
-                        exit();
+                        // header("Location: admin.php");
+                        // exit();
                         } else {
                             echo '<br>';
                             echo "Failed to get The Table";

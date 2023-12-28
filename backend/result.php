@@ -4,13 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/result.css">
-    <title>Search</title>
-
+    <title>Document</title>
 </head>
 
 <body>
-
+    <div class="result">
     <?php
 
     function drawTable($row_new, $query_new)  //function to draw tables
@@ -29,7 +27,7 @@
             if ($row_new != Null) {
                 echo '<tr>';
                 foreach ($row_new as $columnValue) {
-                    echo "<td>$columnValue</td>";
+                    echo "<th>$columnValue</th>";
                 }
                 echo '</tr>';
             } else {
@@ -75,7 +73,7 @@
     }
 
     ?>
-
+    </div>
 </body>
 
 </html>

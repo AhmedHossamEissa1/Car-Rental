@@ -19,6 +19,20 @@ table{
 table, th, td {
   border:1px solid black;
 }
+table td,table th{
+    border: 1px solid #ddd;
+    padding: 14px;
+}
+table tr:nth-child(even){background-color: #f2f2f2;}
+table tr:nth-child(odd){background-color: #fdfcfc;}
+table tr:hover {background-color: #ddd;}  /*color when hovering*/
+table th {
+  padding-top: 14px;
+  padding-bottom: 14px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
 /* end of tables style */
 
 nav {
@@ -387,5 +401,57 @@ border: none;
 
 #update{
   margin-left: 100px;
+}
+#update h1{
+  margin-bottom: 30px;
+}
+.up-label{
+    margin-top: 83px;
+    margin-bottom: 70px;
+    color: var(--second-color);
+    font-weight: bold;
+
+}
+
+.btn3{
+    position: absolute;
+    left: 519px;
+    top: 226px;
+    padding: 12px;
+    background-color: var(--second-color);
+    color: white;
+    font-weight: bold;
+    border-radius: 8px ;
+    -webkit-border-radius: 8px ;
+    -moz-border-radius: 8px ;
+    -ms-border-radius: 8px ;
+    -o-border-radius: 8px ;
+    cursor: pointer;
+}
+
+select{
+  color: aliceblue;
+  background-color:var(--second-color);
+    font-size: 20px;
+  font-weight: bold;
+
+}
+option{
+  color: aliceblue;
+  background-color: var(--second-color);
+  padding: 7px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.up-inp{
+  padding: 5px;
+  outline: none;
+  border: none;
+  border-bottom: 3px solid var(--third-color);
+  background-color: transparent;
+  width: 150px;
+  font-weight: bold;
+  font-size: 22px;
 }
 
