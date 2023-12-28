@@ -1,0 +1,233 @@
+:root {
+
+    --main-color: #0C121C;
+    --second-color: #1E293B;
+    --third-color: #7148FC;
+
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+
+nav {
+    background-color: var(--main-color);
+    color: #8a2828;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px 2px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 999;
+}
+
+nav select,
+nav input[type="number"],
+nav input[type="text"],
+nav button {
+    padding: 5px;
+    border-radius: 20px;
+    border: none;
+    margin-right: 30px;
+    font-size: 16px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+
+nav button {
+    background-color: #f44336;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 130px;
+    height: 30px;
+}
+
+nav button:hover {
+    background-color: #ff665a;
+}
+
+
+.logo {
+    width: 70px;
+    height: auto;
+}
+
+/*  */
+
+header {
+    background-color: #f0f0f0;
+    padding: 20px;
+    text-align: center;
+}
+
+header img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 20px;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+form label,
+form input,
+form select,
+form button {
+    margin: 5px;
+}
+
+
+/* Add your styles for the card here */
+.card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    text-align: center;
+}
+
+.card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.card h2 {
+    color: #333;
+}
+
+.card ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.card li {
+    margin-bottom: 10px;
+}
+
+
+
+
+footer {
+    background-color: var(--main-color);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    z-index: 999;
+    left: 0px;
+    height: 60px;
+    margin-top: 100px;
+}
+
+footer .box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    padding-left: 8px;
+}
+
+footer .box h4 {
+    text-align: center;
+    margin-left: 100px;
+}
+
+footer .links {
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+}
+
+footer .links li {
+    margin-right: 20px;
+}
+
+footer .links a {
+    color: rgb(208, 208, 208);
+    text-decoration: none;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 40px;
+    /* Increased padding for better spacing */
+}
+
+.car-list {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    max-width: 1600px;
+    /* Increased max-width for a larger layout */
+}
+
+.car-item {
+    text-align: center;
+    margin: 30px;
+    /* Increased margin for better spacing */
+    padding: 30px;
+    /* Increased padding for better spacing */
+    border: 2px solid rgb(138, 37, 37);
+    border-radius: 20px;
+    width: 350px;
+    /* Increased width for a larger card */
+
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    /* Increased box-shadow for a subtle lift */
+}
+
+.car-item img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    /* Increased margin for better spacing */
+    border-radius: 15px;
+    /* Increased border-radius for a softer look */
+}
+
+
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.message-box {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #f8d7da; /* Light red background color */
+    border: 1px solid #f5c6cb; /* Red border color */
+    color: #721c24; /* Dark red text color */
+    padding: 10px; /* Padding around the error message */
+    margin-bottom: 15px; /* Space below the error message */
+    border-radius: 5px; /* Rounded corners */
+}
+  
+  .error-message {
+    margin: 0; /* Remove default margin for better spacing */
+  }
+  

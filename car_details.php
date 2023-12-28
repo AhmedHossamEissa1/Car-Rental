@@ -1,60 +1,76 @@
+<?php
+session_start();
+require_once('class.php');
+$user = unserialize($_SESSION["user"]);
+$car = $user->showCarDetails($_GET["num"]);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Result of search</title>
+    <link rel="stylesheet" href="css/car_details.css">
+    <title>Car Details Page</title>
 </head>
 
 <body>
 
     <nav>
-        <img src="../assets/vendor-8.png" alt="Company Logo" class="logo">
+        <img src="assets/vendor-8.png" alt="Company Logo" class="logo">
+
+        <form action="backend/search.php" method="POST">
+            <input type="text" name="text" placeholder="search by and of car specs">
+            <button type="submit" name="submit">Search</button>
+        </form>
 
         <button onclick="search()">Search Page</button>
 
-        <form action="login.php" method="POST">
-            <button type="submit" name="submit">LOGIN</button>
-        </form>
+
+
+        <button onclick="search_final()">Search final plz</button>
+
+        <button onclick="logout()">LOGOUT</button>
 
 
     </nav>
+
+    <br><br><br><br><br><br>
+    <div class="card">
     <?php
-    session_start();
-    $serverName = "localhost";
-    $userName = "root";
-    $password = "";
-    $dbName = "car_rental";
-
-    $con = mysqli_connect($serverName, $userName, $password, $dbName);
-    if (mysqli_connect_errno()) {
-        echo "Failed to conned";
-        // exit();
-    }
-
-    if (isset($_POST['submit'])) {
-        $inp = $_POST['text'];
-
-
-        $query = mysqli_query(
-            $con,
-            "SELECT * FROM car
-             WHERE '$inp' = `year` OR '$inp' = `car_status` OR '$inp' = `plate_id` OR '$inp' = `model`
-             OR '$inp' = `price_per_day`
-             "
-        );
-        if ($query) {
-            $row = mysqli_fetch_assoc($query);
-            echo "row returned $row";
-
-            echo '</h1>';
-        } else {
-            echo '<br>';
-            echo "Failed to reach to the email and password";
+    if (!empty($car)) {
+        echo '<img src="' . $car['image'] . '" alt="Car Image">';
+        echo '<h2>Car Details</h2>';
+        echo '<ul>';
+        $canRent = false; // Initialize a variable to track if the car can be rented
+        foreach ($car as $property => $value) {
+            if ($property == 'image' || $property == 'car_id' || $property == 'plate_id' || $property == 'office_id') {
+                continue;
+            }
+            echo '<li><strong>' . ucfirst($property) . ':</strong> ' . $value . '</li>';
+            // Check if the car is available for rent
+            if ($property == 'car_status' && $value == 'Available') {
+                $canRent = true;
+            }
         }
+        echo '</ul>';
+        if ($canRent) {
+            // Car is available for rent, show the button
+            echo '<button class="btn btn-primary" onclick="gotoPayment(' . $car['price_per_day'] . ')"><b>Rent</b></button>';
+        } else {
+            // Car is not available for rent, show the message box
+            echo '<div class="message-box">';
+            echo '<p class="error-message">Can\'t Rent This Car. It is UNAVAILABLE!!</p>';
+            echo '</div>';
+        }
+    } else {
+        echo "<p>No car details available.</p>";
     }
     ?>
+</div>
+
+
+
     <footer>
         <div class="box">
             <p>&copy; 2023 Car Retail</p>
@@ -76,6 +92,11 @@
         </div>
     </footer>
 
+    <script>
+        function gotoPayment(number) {
+            window.location.href = "backend/payment.php?num=" + number;
+        }
+    </script>
 </body>
 
 </html>

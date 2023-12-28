@@ -12,10 +12,10 @@ if ($_POST["userType"] == "user") {
       $user = user::login($email, $password);
 
       if ($user == NULL) {
-         header("location:login.php?msg=w_e_p");
+         header("location:index.php?msg=w_e_p");
       } else {
          $_SESSION["user"] = serialize($user);
-         header("location:index.html");
+         header("location:home.php");
       }
    }
 } else {
@@ -26,7 +26,7 @@ if ($_POST["userType"] == "user") {
       $admin = admin::login($email, $password);
 
       if ($admin == NULL) {
-         header("location:login.php?msg=w_e_p");
+         header("location:index.php?msg=w_e_p");
       } else {
          $_SESSION["user"] = serialize($user);
          header("location:backend/admin.php");
