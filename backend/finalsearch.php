@@ -59,21 +59,52 @@
             $con,
             "SELECT car.year,car.model,car.car_status,car.price_per_day,car.office_id
                     FROM car
-                    WHERE '$inp' = `year` OR '$inp' = `car_status` OR '$inp' = `plate_id` OR '$inp' = `model`
+                    WHERE '$inp' = `year` OR '$inp' = `car_status` OR '$inp' = `plate_id` OR model LIKE '%$inp%'  
                     OR '$inp' = `price_per_day`
                     "
         );
         if ($query) {
             $row = mysqli_fetch_assoc($query);
-            echo "result of search: ";
-            echo '<br>';
+            // echo "result of search: ";
+            // echo '<br>';
             drawTable($row, $query);
         } else {
             echo '<br>';
-            echo "Failed to reach to the email and password";
+            echo "Failed to Search";
         }
     }
 
+  
+
+    else if(isset($_POST['search2'])){
+        $year = $_POST['year'];
+        $model = $_POST['model'];
+        // $status = $_POST['status'];
+        $price_from = $_POST['price-from'];
+        $price_to = $_POST['price-to'];
+        $country = $_POST['country'];
+        $state = $_POST['state'];
+
+        $query = mysqli_query(
+            $con,
+            "SELECT c.`year`,c.model,c.car_status,c.price_per_day,c.office_id
+        FROM car as c
+    join OFFICE as o on o.office_id=c.office_id
+    WHERE model LIKE '$model%' and `year`='$year' and price_per_day between '$price_from' and '$price_to' and country='$country' and `state`='$state' "
+        );
+
+    }
+
+    if ($query) {
+        $row = mysqli_fetch_assoc($query);
+        // echo "result of search: ";
+        echo '<br>';
+        echo '<br>';
+        drawTable($row, $query);
+    } else {
+        echo '<br>';
+        echo "Failed to Search";
+    }
     ?>
 
 </body>
