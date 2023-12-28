@@ -1,0 +1,68 @@
+:root{
+
+    --main-color:#0C121C;
+    --second-color:#1E293B;
+    --third-color:#7148FC;
+
+}
+
+*{
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  font-size: 30px;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-image: url('../assets/bc.jpg'); /* Replace 'car-background.jpg' with your background image */
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+}
+
+nav {
+  background-color: var(--main-color);
+  color: #8a2828;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 2px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+
+nav select,
+nav input[type="number"],
+nav input[type="text"],
+nav button{
+  padding: 5px;
+  border-radius: 20px;
+  border: none;
+  margin-right: 30px;
+  font-size: 16px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+
+nav button{
+  background-color: #f44336;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 130px;
+  height: 30px;
+}
+
+nav button:hover{
+  background-color: #ff665a;
+}
+
+

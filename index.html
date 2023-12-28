@@ -24,15 +24,10 @@
     <button onclick="search()">Search Page</button>
 
     <form action="login.php" method="POST">
-      <!-- <input type="text" name="text">   -->
       <button type="submit" name="submit">LOGIN</button>
     </form>
 
-    <!-- <a name="login" class="btn btn-primary" href="login.php" role="button">LOGIN</a> -->
-
-    <!-- <button href="login.php">LOGIN</button> -->
-
-    <!-- <a name="" id="" class="btn btn-primary" href="login.php" role="button" style="text-align: center;">LOGIN</a> -->
+    <button onclick="search_final()">Search final plz</button>
 
 
   </nav>
@@ -103,6 +98,9 @@
   <script>
     function search() {
       window.location.href = "search.html";
+    }
+    function search_final(){
+      window.location.href = "backend/finalsearch.php";
     }
   </script>
 
