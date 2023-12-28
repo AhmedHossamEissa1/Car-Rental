@@ -153,7 +153,7 @@
                 
             <label class="up-label" for="car_status">Car Status:</label>
             <select name="car_status" id="car_status">
-            <option value="active">Active</option>
+            <option value="Available">Available</option>
             <option value="out_of_service">Out of Service</option>
             <option value="rented">Rented</option>
             </select>
@@ -346,8 +346,7 @@
                 $sql = "UPDATE car SET car_status = '$new_value' WHERE car.car_id = '$id'";
                 if (mysqli_query($con, $sql)) {
                     
-                    echo
-                    '<h2>Your car have been updated successfully</h2>';
+                    echo'<h2>Your car have been updated successfully</h2>';
                     header("Location: admin.php");
                     exit();
                 } else {
@@ -355,10 +354,7 @@
                 }
 
             }
-
             ?>
-
-
         </main>
 
     </div>
