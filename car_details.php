@@ -19,16 +19,7 @@ $car = $user->showCarDetails($_GET["num"]);
     <nav>
         <img src="assets/vendor-8.png" alt="Company Logo" class="logo">
 
-        <form action="backend/search.php" method="POST">
-            <input type="text" name="text" placeholder="search by and of car specs">
-            <button type="submit" name="submit">Search</button>
-        </form>
-
-        <button onclick="search()">Search Page</button>
-
-
-
-        <button onclick="search_final()">Search final plz</button>
+    
 
         <button onclick="logout()">LOGOUT</button>
 
@@ -54,9 +45,10 @@ $car = $user->showCarDetails($_GET["num"]);
             }
         }
         echo '</ul>';
-        if ($canRent) {
+        if (true) {
             // Car is available for rent, show the button
-            echo '<button class="btn btn-primary" onclick="gotoPayment(' . $car['price_per_day'] . ')"><b>Rent</b></button>';
+            echo '<button class="btn btn-primary" onclick="gotoPayment(' . $car['car_id'] .', '. $car['price_per_day'] .')"><b>Rent</b></button>';
+
         } else {
             // Car is not available for rent, show the message box
             echo '<div class="message-box">';
@@ -93,9 +85,11 @@ $car = $user->showCarDetails($_GET["num"]);
     </footer>
 
     <script>
-        function gotoPayment(number) {
-            window.location.href = "backend/payment.php?num=" + number;
-        }
+      function gotoPayment(number, number1) {
+        var userId = <?php echo $user->id; ?>;
+        var offId = <?php echo $car['office_id']; ?>;
+        window.location.href = "payment.php?num=" + number + "&num1=" + number1 + "&num2=" + userId + "&num3=" + offId;
+    }
     </script>
 </body>
 
