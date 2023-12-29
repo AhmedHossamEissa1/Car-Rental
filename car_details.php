@@ -29,6 +29,7 @@ $car = $user->showCarDetails($_GET["num"]);
     <br><br><br><br><br><br>
     <div class="card">
     <?php
+
     if (!empty($car)) {
         echo '<img src="' . $car['image'] . '" alt="Car Image">';
         echo '<h2>Car Details</h2>';

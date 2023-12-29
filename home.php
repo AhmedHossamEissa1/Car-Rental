@@ -36,7 +36,7 @@ var_dump($cars);
 
 
 
-    <button onclick="search_final()">Search final plz</button>
+    <button onclick="search_final()">Search</button>
 
     <button onclick="logout()">LOGOUT</button>
 
