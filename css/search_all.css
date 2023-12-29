@@ -43,12 +43,21 @@ color: #fff;
     width: 80px;
     box-shadow: 10px 10px 8px #888888;
 }
-.header{
+.header {
     display: flex;
-    
+    justify-content: center;
+    /* background: linear-gradient(to right bottom, rgba(76, 216, 255, 0.8), rgba(30, 108, 217, 0.8)),                url('../assets/bc.jpg') center/cover no-repeat;
+    transform:rotate(-20deg) translate(-50px,-100px);
+    -webkit-transform:rotate(-20deg) translate(-50px,-100px);
+    -moz-transform:rotate(-20deg) translate(-50px,-100px);
+    -ms-transform:rotate(-20deg) translate(-50px,-100px);
+    -o-transform:rotate(-20deg) translate(-50px,-100px);
+    padding: 20px;
+    height: 200px; */
 }
-.header h2{
+.header h1{
     color: #3CB35A;
+    /* box-shadow: -5px 7px 6px #888888; */
 }
 .search1{
     display: flex;
@@ -56,7 +65,7 @@ color: #fff;
     align-items: center;
     flex-direction: column;
     flex-wrap: wrap;
-    height: 500px;
+    height: 492px;
 }
 .form1{
     display: flex;
@@ -77,19 +86,26 @@ color: #fff;
     opacity: 0.6;
     
 }
-.additional{
+.input-container {
+    position: relative;
+    margin-top: 50px;
+}
+
+.additional {
+    border: 1px solid black;
+    border-right: none;
     position: absolute;
-    bottom: 293px;
+    top: 77%;
+    left: 49px;
+    transform: translateY(-50%);
     text-align: center;
     line-height: 2.6;
     z-index: 99;
-    left: 391px;
     background-color: #635E79;
     color: black;
     font-size: 15px;
     height: 41px;
     width: 70px;
-
 }
 .bt{
     cursor: pointer;
@@ -170,17 +186,17 @@ color: #fff;
 }
 /* search 2 end */
 .switch{
-    margin-top: -76px;
+    margin-top: -80px;
 
 }
-.switch button{
+.switch button {
     cursor: pointer;
     width: 100px;
     height: 50px;
-    margin-top: -10px;
+    margin-top: 15px;
     transition: transform 0.5s ease;
     background-color: #3CB35A;
-    color:aliceblue;
+    color: aliceblue;
     outline: 2px solid black;
     border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -188,7 +204,6 @@ color: #fff;
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
     font-weight: bold;
-
 }
 
 .switch button:hover{
@@ -198,6 +213,16 @@ color: #fff;
     -ms-transform: translateY(-10px);
     -o-transform: translateY(-10px);
 } 
+
+@media only screen and (max-width: 600px) {
+    .switch {
+        margin-top: 10px; /* Adjust as needed for spacing */
+    }
+
+    .bt {
+        margin-top: 10px; /* Adjust as needed for spacing */
+    }
+}
 
 option{
     background-color: #3CB35A;
@@ -219,7 +244,7 @@ select{
 .bt22 .switch{
     position: absolute;
     position: absolute;
-    bottom: -126px;
+    bottom: -143px;
     left: 750px;
 }
 
