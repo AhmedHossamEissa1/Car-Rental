@@ -24,7 +24,7 @@ session_destroy();
         if (!empty($_GET["msg"]) && $_GET["msg"] == "done") {
         ?>
           <div class="alert" role="alert">
-            <strong><b style="color: greenyellow;">Successfully SignUp</b></strong>
+            <strong><b style="color: greenyellow; font-weight:bold">Successfully SignUp</b></strong>
           </div>
 
         <?php
@@ -34,8 +34,8 @@ session_destroy();
         <?php
         if (!empty($_GET["msg"]) && $_GET["msg"] == "w_e_p") {
         ?>
-          <div class="alert" role="alert">
-            <strong><b style="color: red;">Wrong Email Or Password</b></strong> Login Again
+          <div class="alert" role="alert" style="font-weight:bold; color:#DDDBDB">
+            <strong><b style="color: red; font-weight:bold">Wrong Email Or Password</b></strong> Login Again
           </div>
 
         <?php
