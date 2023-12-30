@@ -1,3 +1,10 @@
+<?php
+session_start();
+            
+if (empty($_SESSION["user"])) {
+    header("location:../unauthorized.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -105,9 +112,9 @@
                         foreach ($row_new as $fieldName => $columnValue) {
                             if ($fieldName !== "car_id") {
                                 if (str_contains($columnValue, "assets")) {
-                                    $width = 100;
+                                    $width = 130;
                                     $height = 100;
-                                    echo "<td><img src='../assets/car-rent-{$row_new['car_id']}.png' alt='photo' width='{$width}' height='{$height}' ></td>";
+                                    echo "<td><img src='../{$row_new['image']}' alt='photo' width='{$width}' height='{$height}' >";
                                 } else {
                                     echo "<td>$columnValue</td>";
                                 }
@@ -175,7 +182,6 @@
                 ';
             }
 
-            session_start();
             $serverName = "localhost";
             $userName = "root";
             $password = "";

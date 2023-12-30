@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (empty($_SESSION["user"])) {
+    header("location:../unauthorized.php");
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -65,11 +72,12 @@
         }
     }
 
-    session_start();
     $serverName = "localhost";
     $userName = "root";
     $password = "";
     $dbName = "car_rental";
+    require_once('../class.php');
+    // $user = unserialize($_SESSION["user"]);
 
     $con = mysqli_connect($serverName, $userName, $password, $dbName);
     if (mysqli_connect_errno()) {
@@ -130,6 +138,10 @@
             console.log("in function");
             window.location.href = "../car_details.php?num=" + number;
         }
+
+
+
+        
     </script>
 </body>
 

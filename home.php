@@ -27,14 +27,6 @@ var_dump($cars);
   <nav>
     <img src="assets/vendor-8.png" alt="Company Logo" class="logo">
 
-    <!-- <form action="backend/search.php" method="POST">
-      <input type="text" name="text" placeholder="search by and of car specs">
-      <button type="submit" name="submit">Search</button>
-    </form> -->
-
-    <!-- <button onclick="search()">Search Page</button> -->
-
-
 
     <button onclick="search_final()">Search</button>
 
@@ -45,30 +37,6 @@ var_dump($cars);
 
   <br><br><br><br><br><br>
 
-  <!-- <main>
-    <div class="car-list">
-      <div class="car-item">
-        <img style="width: 200px; height: 100px;" src="assets/car-rent-1.png" alt="Car 1">
-        <h2>Car 1</h2>
-        <p>Price: $700000</p>
-        <p>Year: 2022</p>
-      </div>
-
-      <div class="car-item">
-        <img style="width: 300px; height: 200px;" src="assets/car-rent-2.png" alt="Car 2">
-        <h2>Car 2</h2>
-        <p>Price: $400000</p>
-        <p>Year: 2018</p>
-      </div>
-
-      <div class="car-item">
-        <img src="assets/car-rent-3.png" alt="Car 3">
-        <h2>Car 3</h2>
-        <p>Price: $1000000</p>
-        <p>Year: 2023</p>
-      </div>
-    </div>
-  </main> -->
 
   <main>
     <div class="car-list">
@@ -110,7 +78,7 @@ var_dump($cars);
   <script>
 
     function search_final() {
-      window.location.href = "findcar.html";
+      window.location.href = "findcar.php";
     }
 
     function gotoCar(number) {

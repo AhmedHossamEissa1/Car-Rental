@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (empty($_SESSION["user"])) {
+   header("location:unauthorized.php");
+}
 require_once("class.php");
 // var_dump($_POST);
 // var_dump($_POST["userType"]);

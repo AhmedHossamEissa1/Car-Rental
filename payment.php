@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (empty($_SESSION["user"])) {
+  header("location:unauthorized.php");
+}
 $id = $_GET['num'];
 $price=$_GET['num1'];
 $userid=$_GET['num2'];

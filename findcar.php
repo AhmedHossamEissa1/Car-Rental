@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (empty($_SESSION["user"])) {
+    header("location:unauthorized.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +22,7 @@
     </div>
 
     <div id="s1" class="search1">
-        <form class="form1" action="backend/finalsearch.php" method="post" onsubmit="return check1()">
+        <form id="d3" class="form1" action="backend/finalsearch.php" method="post" onsubmit="return check1()">
             <div class="input-container">
                 <span class="additional">car spec</span>
                 <input id="ss1" name="text" class="input1" type="text" placeholder="What are you looking for?">
@@ -69,8 +75,9 @@
                 s1.style.display = "flex";
             }
         }
-        function check1(){
-            var x =document.getElementById('ss1').value;
+
+        function check1() {
+            var x = document.getElementById('ss1').value;
             if (!x) {
                 alert('Enter a value to search')
 
@@ -79,40 +86,40 @@
             return true;
         }
 
-        function check2(){
+        function check2() {
             var x1 = document.getElementById('in1').value;
             var x2 = document.getElementById('in2').value;
             var x3 = document.getElementById('in3').value;
             var x4 = document.getElementById('in4').value;
             var x5 = document.getElementById('in5').value;
             var x6 = document.getElementById('in6').value;
-        
-        if (!x1) {
-            alert("Enter a year to search")
-            return false;
+
+            if (!x1) {
+                alert("Enter a year to search")
+                return false;
+            }
+            if (!x2) {
+                alert("Enter a model to search")
+                return false;
+            }
+            if (!x3) {
+                alert("Enter a start price")
+                return false;
+            }
+            if (!x4) {
+                alert("Enter end price")
+                return false;
+            }
+            if (!x5) {
+                alert("Enter a country")
+                return false;
+            }
+            if (!x6) {
+                alert("Enter a state")
+                return false;
+            }
+            return true;
         }
-                if (!x2) {
-            alert("Enter a model to search")
-            return false;
-        }
-                if (!x3) {
-            alert("Enter a start price")
-            return false;
-        }
-                if (!x4) {
-            alert("Enter end price")
-            return false;
-        }
-                if (!x5) {
-            alert("Enter a country")
-            return false;
-        }
-                if (!x6) {
-            alert("Enter a state")
-            return false;
-        }
-        return true;
-    }
     </script>
 </body>
 

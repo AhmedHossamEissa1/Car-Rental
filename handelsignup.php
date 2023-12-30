@@ -1,5 +1,8 @@
 <?php
-
+session_start();
+if (empty($_SESSION["user"])) {
+    header("location:unauthorized.php");
+}
 require_once("class.php");
 
 if (!empty($_POST["fname"]) && !empty($_POST["lname"]) && !empty($_POST["email"]) && !empty($_POST["password"]) && !empty($_POST["country"] && !empty($_POST["state"])))

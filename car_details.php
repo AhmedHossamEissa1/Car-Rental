@@ -1,9 +1,14 @@
 <?php
 session_start();
+if (empty($_SESSION["user"])) {
+    header("location:unauthorized.php");
+}
 require_once('class.php');
 $user = unserialize($_SESSION["user"]);
 $car = $user->showCarDetails($_GET["num"]);
-$cameFromHome = isset($_SERVER['HTTP_REFERER']) && strpos($_SERVER['HTTP_REFERER'], 'home.php') !== false;
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +25,7 @@ $cameFromHome = isset($_SERVER['HTTP_REFERER']) && strpos($_SERVER['HTTP_REFERER
     <nav>
         <img src="assets/vendor-8.png" alt="Company Logo" class="logo">
 
-    
+
 
         <button onclick="logout()">LOGOUT</button>
 
@@ -29,39 +34,38 @@ $cameFromHome = isset($_SERVER['HTTP_REFERER']) && strpos($_SERVER['HTTP_REFERER
 
     <br><br><br><br><br><br>
     <div class="card">
-    <?php
+        <?php
 
-    if (!empty($car)) {
-        echo '<img src="' . $car['image'] . '" alt="Car Image">';
-        echo '<h2>Car Details</h2>';
-        echo '<ul>';
-        $canRent = false; // Initialize a variable to track if the car can be rented
-        foreach ($car as $property => $value) {
-            if ($property == 'image' || $property == 'car_id' || $property == 'plate_id' || $property == 'office_id') {
-                continue;
+        if (!empty($car)) {
+            echo '<img src="' . $car['image'] . '" alt="Car Image">';
+            echo '<h2>Car Details</h2>';
+            echo '<ul>';
+            $canRent = false; // Initialize a variable to track if the car can be rented
+            foreach ($car as $property => $value) {
+                if ($property == 'image' || $property == 'car_id' || $property == 'plate_id' || $property == 'office_id') {
+                    continue;
+                }
+                echo '<li><strong>' . ucfirst($property) . ':</strong> ' . $value . '</li>';
+                // Check if the car is available for rent
+                if ($property == 'car_status' && $value == 'Available') {
+                    $canRent = true;
+                }
             }
-            echo '<li><strong>' . ucfirst($property) . ':</strong> ' . $value . '</li>';
-            // Check if the car is available for rent
-            if ($property == 'car_status' && $value == 'Available') {
-                $canRent = true;
+            echo '</ul>';
+            if (true) {
+                // Car is available for rent, show the button
+                echo '<button class="btn btn-primary" onclick="gotoPayment(' . $car['car_id'] . ', ' . $car['price_per_day'] . ')"><b>Rent</b></button>';
+            } else {
+                // Car is not available for rent, show the message box
+                echo '<div class="message-box">';
+                echo '<p class="error-message">Can\'t Rent This Car. It is UNAVAILABLE!!</p>';
+                echo '</div>';
             }
-        }
-        echo '</ul>';
-        if (true) {
-            // Car is available for rent, show the button
-            echo '<button class="btn btn-primary" onclick="gotoPayment(' . $car['car_id'] .', '. $car['price_per_day'] .')"><b>Rent</b></button>';
-
         } else {
-            // Car is not available for rent, show the message box
-            echo '<div class="message-box">';
-            echo '<p class="error-message">Can\'t Rent This Car. It is UNAVAILABLE!!</p>';
-            echo '</div>';
+            echo "<p>No car details available.</p>";
         }
-    } else {
-        echo "<p>No car details available.</p>";
-    }
-    ?>
-</div>
+        ?>
+    </div>
 
 
 
@@ -87,11 +91,17 @@ $cameFromHome = isset($_SERVER['HTTP_REFERER']) && strpos($_SERVER['HTTP_REFERER
     </footer>
 
     <script>
-      function gotoPayment(number, number1) {
-        var userId = <?php echo $user->id; ?>;
-        var offId = <?php echo $car['office_id']; ?>;
-        window.location.href = "payment.php?num=" + number + "&num1=" + number1 + "&num2=" + userId + "&num3=" + offId;
-    }
+        function gotoPayment(number, number1) {
+            var userId = <?php echo $user->id; ?>;
+            var offId = <?php echo $car['office_id']; ?>;
+            window.location.href = "payment.php?num=" + number + "&num1=" + number1 + "&num2=" + userId + "&num3=" + offId;
+        }
+
+
+        function goBackToHome() {
+            window.location.href = "home.php";
+        }
+
     </script>
 </body>
 
