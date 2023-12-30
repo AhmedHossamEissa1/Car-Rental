@@ -1,0 +1,130 @@
+:root {
+  --main-color: #0c121c;
+  --second-color: #1e293b;
+  --third-color: #7148fc;
+}
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+html {
+    scroll-behavior: smooth;
+}
+
+.team{
+    padding-bottom: 10px;
+}
+.team .container > h2{
+    margin-bottom: 70px;
+    text-align: center;
+    font-family: Cairo;
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 90px;
+    letter-spacing: 0em;
+    text-align: center;
+    background-color:  var(--main-color);
+    color: aliceblue;
+}
+.team .container .list{
+    display: flex;
+    justify-content: space-between;
+    max-width: 1150px;
+    margin-left: 100px;
+}
+.team .container .list .box{
+    margin-left: 10px;
+    margin-right: 10px;
+    max-width: 21%;
+}
+@media(max-width:767px){
+    .team .container .list{
+        flex-direction: column;
+
+    }
+    .team .container .list .box{
+        max-width: 100%;
+    }
+}
+.team .container .list .box img{
+    max-width: 100%;
+}
+.team .container .list .box h2{
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 60px;
+    letter-spacing: 0em;
+}
+.team .container .list .box p{
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 30px;
+    letter-spacing: 0em;
+    text-align: right;
+    color: var(--main-paragraph-color);
+}
+@media(max-width:767px){
+    .team .container .list .box {
+        text-align: center;
+    }
+    .team .container .list .box h2,.team .container .list .box p{
+        text-align: center;
+    }
+    .team .container .list .box p{
+        margin-bottom: 10px;
+    }
+}
+
+.gradient {
+    background: linear-gradient(to left, #4ba705, #5367ff);
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    position: relative;
+}
+
+/* END TEAM */
+
+
+
+footer {
+    background-color: var(--main-color);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    z-index: 999;
+    left: 0px;
+    height: 110px;
+    margin-top: 50px;
+}
+
+footer .box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    padding-left: 8px;
+}
+
+footer .box h4 {
+    text-align: center;
+    margin-left: 100px;
+}
+
+footer .links {
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+}
+
+footer .links li {
+    margin-right: 20px;
+}
+
+footer .links a {
+    color: rgb(208, 208, 208);
+    text-decoration: none;
+}

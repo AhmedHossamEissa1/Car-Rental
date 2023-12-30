@@ -5,7 +5,9 @@
     --third-color: #7148FC;
 
 }
-
+html {
+    scroll-behavior: smooth;
+}
 * {
     box-sizing: border-box;
     margin: 0px;

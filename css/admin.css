@@ -283,6 +283,9 @@ aside .co-no{
     margin-top: 5px;
     font-weight: bold;
 }
+html {
+    scroll-behavior: smooth;
+}
 /* end grid */
 
 /*Start footer */

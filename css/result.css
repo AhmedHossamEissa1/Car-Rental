@@ -3,7 +3,9 @@
   margin: 0px;
   padding: 0px;
 }
-
+html {
+    scroll-behavior: smooth;
+}
 :root {
   --main-color: #0c121c;
   --second-color: #1e293b;

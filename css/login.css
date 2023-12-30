@@ -9,7 +9,9 @@ body {
   background: url('../assets/login3.jpg') no-repeat center center fixed;
   background-size: cover;
 }
-
+html {
+    scroll-behavior: smooth;
+}
 .container {
   margin-right: auto; /* Add margin to the right, adjust as needed */
   margin-left: 20px;  /* Adjust as needed to move the box slightly to the left */
