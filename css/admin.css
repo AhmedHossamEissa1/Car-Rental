@@ -287,7 +287,7 @@ aside .co-no{
 
 /*Start footer */
 
-footer {
+/* footer {
   background-color: var(--main-color);
   color: white;
   text-align: center;
@@ -324,7 +324,7 @@ footer .links li {
 footer .links a {
   color: rgb(208, 208, 208);
   text-decoration: none;
-}
+} */
 /* end footer */
 
 
@@ -466,5 +466,10 @@ option{
   width: 150px;
   font-weight: bold;
   font-size: 22px;
+}
+
+.add-car{
+  margin-top: 10px;
+  left: -10px;
 }
 

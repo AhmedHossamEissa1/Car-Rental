@@ -3,6 +3,7 @@ session_start();
 require_once('class.php');
 $user = unserialize($_SESSION["user"]);
 $car = $user->showCarDetails($_GET["num"]);
+$cameFromHome = isset($_SERVER['HTTP_REFERER']) && strpos($_SERVER['HTTP_REFERER'], 'home.php') !== false;
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -14,7 +14,7 @@
     {
         $numColumns = mysqli_num_fields($query_new);
 
-        echo '<table style="width: 96px;%">';
+        echo '<table style="width: 96px;">';
         echo '<tr>';
         for ($i = 0; $i < $numColumns; $i++) {
             $fieldName = mysqli_fetch_field_direct($query_new, $i)->name;
@@ -23,14 +23,15 @@
             }
         }
         echo '</tr>';
-        $id=0;
+        $id = 0;
         // <form action='../car_details.php' method ='get' onclick='return check(row_new['car_status'])'>
         do {
             if ($row_new != null) {
                 echo '<tr>';
                 foreach ($row_new as $fieldName => $columnValue) {
                     if ($fieldName == "car_id") {
-                            $id = $row_new['car_id'];
+                        $id = $row_new['car_id'];
+                        
                     }
                     if ($fieldName !== "car_id") {
                         if (str_contains($columnValue, "assets")) {

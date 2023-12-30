@@ -13,10 +13,10 @@
 
 
 
-<nav>
+    <nav>
         <img src="../assets/vendor-8.png" alt="Company Logo" class="logo">
         <button onclick="logout()">LOGOUT</button>
-     
+
     </nav>
 
     <br><br><br><br>
@@ -27,7 +27,7 @@
 
     <div class="grid-container">
         <aside>
-            <form id="submit" action="admin.php" method="post"> <!-- make admin.php to handle requests-->
+            <form id="submit" action="admin.php" method="post" > <!-- make admin.php to handle requests-->
                 <span class="menu-text">ADMIN MENU</span>
                 <ul class="box">
 
@@ -35,35 +35,35 @@
 
 
                     </li>
-                    <label >From:</label>
-                    <input class="date" type="date" name="date1">
-                    <label >To:</label>
-                    <input class="date" type="date" name="date2">
+                    <label>From:</label>
+                    <input id="d1" class="date" type="date" name="date1">
+                    <label>To:</label>
+                    <input id="d2" class="date" type="date" name="date2">
                     <li>2- All reservations (including all car <br> information) in specified period
 
                     </li>
-                    <label >From:</label>
-                    <input class="date" type="date" name="date3">
-                    <label >To:</label>
-                    <input class="date" type="date" name="date4">
+                    <label>From:</label>
+                    <input id="d3" class="date" type="date" name="date3">
+                    <label>To:</label>
+                    <input id="d4" class="date" type="date" name="date4">
                     <li>3- The status of all cars in specified day
 
-                        <label >DAY </label>
-                        <input class="date" type="date" name="date5">
+                        <label>DAY </label>
+                        <input id="d5" class="date" type="date" name="date5">
                     </li>
 
                     <li>4- All reservations of specific customer
-                        
-                        
-                        <input class="co-no" type="number" name="cus_no">
+
+
+                        <input class="co-no" type="number" name="cus_no" placeholder="customer ID" style="width: 140px;">
                     </li>
 
                     <li>5- Daily payments within specific period in <br> specified period
 
-                    <label >From:</label>
-                    <input class="date" type="date" name="date6">
-                    <label >To:</label>
-                    <input class="date" type="date" name="date7">
+                        <label>From:</label>
+                        <input id="d6" class="date" type="date" name="date6">
+                        <label>To:</label>
+                        <input id="d7" class="date" type="date" name="date7">
                     </li>
 
                 </ul>
@@ -76,7 +76,7 @@
             <form action="admin.php" method="post">
                 <button class="up" name="update">Update car status</button>
             </form>
- 
+
         </aside>
 
         <main>
@@ -124,37 +124,38 @@
             {   //add care function
                 echo '
                 <div class="add-car">
-        <form action="admin.php" method="post">
+        <form action="admin.php" method="post" onsubmit="return check()">
             <h2>Add new car:</h2>
             <br>
 
             <label for="car_status">car status</label>
-            <input type="text" name="car_status">
+            <input id="in1" type="text" name="car_status">
             <label for="model">car model</label>
-            <input type="text" name="model" >
+            <input id="in2" type="text" name="model" >
 
             <label for="year">car year</label>
-            <input class="i3" type="text" name="year">
+            <input id="in3" class="i3" type="text" name="year">
             <label for="plate_id">plate ID</label>
-            <input class="i4" type="text" name="plate_id">
+            <input id="in4" class="i4" type="text" name="plate_id">
 
             <label for="price_per_day">Price per day</label>
-            <input class="i5" type="text" name="price_per_day">
+            <input id="in5" class="i5" type="text" name="price_per_day">
             <label for="office_id">office ID</label>
-            <input class="i6" type="text" name="office_id">
+            <input id="in6" class="i6" type="text" name="office_id">
             
             <label for="img">Car Image Name</label>
-            <input type="text" id="img" name="file_name">
+            <input id="in7" type="text" id="img" name="file_name">
         
-            <button type="submit" name="add_car">Add car</button>
+            <button class="add-car" type="submit" name="add_car">Add car</button>
         </form>
 
     </div>';     //add new car!!
             }
 
-            function update(){
+            function update()
+            {
                 echo '
-                <form id ="update" action="admin.php" method="post">
+                <form id ="update" action="admin.php" method="post" onsubmit="return check2()">
             
             <h1 class="up">Update car status:</h1>
             <div class"choose">
@@ -167,12 +168,11 @@
             </select>
             </div>
             <label class="up-label" >Enter car id you want to update</label>
-            <input class="up-inp" type="text" name="car_id" placeholder="car ID">
+            <input id="inp" class="up-inp" type="text" name="car_id" placeholder="car ID">
 
             <button class="btn3" type="submit" name="update_car">update car</button>
             </form>
                 ';
-                
             }
 
             session_start();
@@ -180,7 +180,7 @@
             $userName = "root";
             $password = "";
             $dbName = "car_rental";
-            
+
 
             $con = mysqli_connect($serverName, $userName, $password, $dbName);
             if (mysqli_connect_errno()) {
@@ -189,35 +189,35 @@
             }
 
             if (isset($_POST['submit'])) {
-                
+
 
 
                 //start !!query one!!!
-                if (!empty($_POST['date1']) && !empty($_POST['date2'])){
+                if (!empty($_POST['date1']) && !empty($_POST['date2'])) {
                     $fromDate1 = $_POST['date1'];
                     $toDate2 = $_POST['date2'];
-            
-                        // echo '<h1>';
-                        // echo 'Enter a valid period';
-                        // echo '</h1>';
-                  
-                        echo 'Result of Service number 1: <br><br>';
-                        $query = mysqli_query($con, "SELECT r.reservation_date,r.pickup_date,r.return_date,c.*,u.Fname,u.Lname,u.user_id,u.email,u.country FROM reservation 
+
+                    // echo '<h1>';
+                    // echo 'Enter a valid period';
+                    // echo '</h1>';
+
+                    echo 'Result of Service number 1: <br><br>';
+                    $query = mysqli_query($con, "SELECT r.reservation_date,r.pickup_date,r.return_date,c.*,u.Fname,u.Lname,u.user_id,u.email,u.country FROM reservation 
                         AS r JOIN car AS c ON r.car_id =c.car_id JOIN user as u ON r.user_id = u.user_id WHERE (r.pickup_date BETWEEN '$fromDate1' AND '$toDate2')
                         or (r.return_date BETWEEN '$fromDate1' AND '$toDate2');
                         ");
-                        if ($query) {
-                            $row = mysqli_fetch_assoc($query);
+                    if ($query) {
+                        $row = mysqli_fetch_assoc($query);
 
-                            drawTable($row, $query);
-                            // header("Location: admin.php");
-                            // exit();
-                        } else {
-                            echo '<br>';
-                            echo "Failed to get The Table";
-                        }
+                        drawTable($row, $query);
+                        // header("Location: admin.php");
+                        // exit();
+                    } else {
+                        echo '<br>';
+                        echo "Failed to get The Table";
                     }
-                
+                }
+
                 //end !!query one!!!
 
 
@@ -225,21 +225,21 @@
                 else   if (!empty($_POST['date3']) && !empty($_POST['date4'])) {
                     $fromDate1 = $_POST['date3'];
                     $toDate2 = $_POST['date4'];
-                        echo 'Result of Service number 2: <br><br>';
-                        $query = mysqli_query($con, "SELECT * FROM reservation AS r JOIN car AS c ON r.car_id =c.car_id
+                    echo 'Result of Service number 2: <br><br>';
+                    $query = mysqli_query($con, "SELECT * FROM reservation AS r JOIN car AS c ON r.car_id =c.car_id
                         WHERE (r.pickup_date BETWEEN  '$fromDate1' AND '$toDate2') or( r.return_date BETWEEN '$fromDate1' AND '$toDate2');
                         ");
-                        if ($query) {
-                            $row = mysqli_fetch_assoc($query);
+                    if ($query) {
+                        $row = mysqli_fetch_assoc($query);
 
-                            drawTable($row, $query);
+                        drawTable($row, $query);
                         // header("Location: admin.php");
                         // exit();
-                        } else {
-                            echo '<br>';
-                            echo "Failed to get The Table";
-                        }
+                    } else {
+                        echo '<br>';
+                        echo "Failed to get The Table";
                     }
+                }
 
                 //end !!query 2!!!
 
@@ -292,7 +292,8 @@
 
 
                 //start !!query 5!!!
-                else   if (!empty($_POST['date6']) && !empty($_POST['date7'])
+                else   if (
+                    !empty($_POST['date6']) && !empty($_POST['date7'])
                 ) { {
                         $fromDate1 = $_POST['date6'];
                         $toDate2 = $_POST['date7'];
@@ -314,9 +315,10 @@
                 }
                 //end !!query 5!!!
                 else {
-                    echo '<h1>';
-                    echo 'invalid input';
-                    echo '</h1>';
+                    echo '<h1 style="margin-left: 80px;">invalid input</h1>';
+                    echo '<h1 style="margin-left: 80px; font-weight 100px; font-size:20px">Enter a valid date or period</h1>';
+                    // echo '<h2 style="margin-left: 80px;>Enter a valid date or period</h2>';
+                    // echo '</h1>';
                 }
             } else  if (isset($_POST['add'])) {
                 addCar();
@@ -337,7 +339,7 @@
                     VALUES ('$car_status', '$fileName','$model','$office_id','$plate_id','$price_per_day','$year')";
 
                 if (mysqli_query($con, $sql)) {
-                    
+
                     echo
                     '<h2>Your car have been added successfully</h2>';
                     header("Location: admin.php");
@@ -353,14 +355,13 @@
                 $new_value = $_POST['car_status'];
                 $sql = "UPDATE car SET car_status = '$new_value' WHERE car.car_id = '$id'";
                 if (mysqli_query($con, $sql)) {
-                    
-                    echo'<h2>Your car have been updated successfully</h2>';
+
+                    echo '<h2>Your car have been updated successfully</h2>';
                     header("Location: admin.php");
                     exit();
                 } else {
                     echo "Failed to update car: " . mysqli_error($con);
                 }
-
             }
             ?>
         </main>
@@ -398,14 +399,61 @@
 
             document.getElementById("submit").submit();
         }
-        
 
-function logout() {
-  console.log("Logout function called");
-  window.location.href = "../index.html";
-}
 
-    
+        function logout() {
+            console.log("Logout function called");
+            window.location.href = "../index.html";
+        }
+
+        function check() {
+            var x1 = document.getElementById('in1').value;
+            var x2 = document.getElementById('in2').value;
+            var x3 = document.getElementById('in3').value;
+            var x4 = document.getElementById('in4').value;
+            var x5 = document.getElementById('in5').value;
+            var x6 = document.getElementById('in6').value;
+            var x7 = document.getElementById('in7').value;
+
+            if (!x1) {
+                alert("Enter a year to search")
+                return false;
+            }
+            if (!x2) {
+                alert("Enter a model to search")
+                return false;
+            }
+            if (!x3) {
+                alert("Enter a start price")
+                return false;
+            }
+            if (!x4) {
+                alert("Enter end price")
+                return false;
+            }
+            if (!x5) {
+                alert("Enter a country")
+                return false;
+            }
+            if (!x6) {
+                alert("Enter a state")
+                return false;
+            }
+            if (!x7) {
+                alert("Enter image name");
+                return false;
+            }
+            return true;
+        }
+
+        function check2() {
+            var x = document.getElementById('inp').value;
+            if (!x) {
+                alert("Enter car ID");
+                return false;
+            }
+            return true;
+        }
     </script>
 </body>
 

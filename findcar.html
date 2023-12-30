@@ -16,10 +16,10 @@
     </div>
 
     <div id="s1" class="search1">
-        <form class="form1" action="backend/finalsearch.php" method="post">
+        <form class="form1" action="backend/finalsearch.php" method="post" onsubmit="return check1()">
             <div class="input-container">
                 <span class="additional">car spec</span>
-                <input name="text" class="input1" type="text" placeholder="What are you looking for?">
+                <input id="ss1" name="text" class="input1" type="text" placeholder="What are you looking for?">
             </div>
             <button class="bt" name="search1">Find your car</button>
         </form>
@@ -29,21 +29,21 @@
     </div>
 
     <div id="s2" class="search2">
-        <form class="form2" action="backend/finalsearch.php" method="post">
-            <input type="number" name="year" placeholder="Year">
-            <input type="text" name="model" placeholder="Model">
+        <form class="form2" action="backend/finalsearch.php" method="post" onsubmit="return check2()">
+            <input id="in1" type="number" name="year" placeholder="Year">
+            <input id="in2" type="text" name="model" placeholder="Model">
 
             <label for="price-from">Range of prices from:</label>
-            <input type="number" id="price-from" name="price-from">
+            <input id="in3" type="number" id="price-from" name="price-from">
 
             <label for="price-to"> To</label>
-            <input type="number" id="price-to" name="price-to">
+            <input id="in4" type="number" id="price-to" name="price-to">
 
             <label for="country">Country</label>
-            <input type="text" id="country" name="country" placeholder="Country">
+            <input id="in5" type="text" id="country" name="country" placeholder="Country">
 
             <label for="state">State</label>
-            <input type="text" id="state" name="state" placeholder="State">
+            <input id="in6" type="text" id="state" name="state" placeholder="State">
 
             <button class="bt" name="search2">Find your car</button>
         </form>
@@ -69,6 +69,50 @@
                 s1.style.display = "flex";
             }
         }
+        function check1(){
+            var x =document.getElementById('ss1').value;
+            if (!x) {
+                alert('Enter a value to search')
+
+                return false;
+            }
+            return true;
+        }
+
+        function check2(){
+            var x1 = document.getElementById('in1').value;
+            var x2 = document.getElementById('in2').value;
+            var x3 = document.getElementById('in3').value;
+            var x4 = document.getElementById('in4').value;
+            var x5 = document.getElementById('in5').value;
+            var x6 = document.getElementById('in6').value;
+        
+        if (!x1) {
+            alert("Enter a year to search")
+            return false;
+        }
+                if (!x2) {
+            alert("Enter a model to search")
+            return false;
+        }
+                if (!x3) {
+            alert("Enter a start price")
+            return false;
+        }
+                if (!x4) {
+            alert("Enter end price")
+            return false;
+        }
+                if (!x5) {
+            alert("Enter a country")
+            return false;
+        }
+                if (!x6) {
+            alert("Enter a state")
+            return false;
+        }
+        return true;
+    }
     </script>
 </body>
 
