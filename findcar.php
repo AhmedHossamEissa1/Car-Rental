@@ -15,7 +15,7 @@ if (empty($_SESSION["user"])) {
 </head>
 
 <body>
-    <img class="logo" src="assets/h.png" alt="logo">
+    <!-- <img class="logo" src="assets/h.png" alt="logo"> -->
     <div class="header">
         <h1>Find a car</h1>
         <img class="im" src="assets/q.png" alt="car">

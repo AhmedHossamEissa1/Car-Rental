@@ -1,9 +1,8 @@
-:root{
-
-    --main-color:#0C121C;
-    --second-color:#1E293B;
-    --third-color:#7148FC;
-
+:root {
+    --main-color: #0C121C;
+    --second-color: #1E293B;
+    --third-color: #7148FC;
+    --accent-color: #3CB35A;
 }
 
 #s1 {
@@ -44,20 +43,30 @@ color: #fff;
     box-shadow: 10px 10px 8px #888888;
 }
 .header {
-    display: flex;
-    justify-content: center;
-    /* background: linear-gradient(to right bottom, rgba(76, 216, 255, 0.8), rgba(30, 108, 217, 0.8)),                url('../assets/bc.jpg') center/cover no-repeat;
-    transform:rotate(-20deg) translate(-50px,-100px);
-    -webkit-transform:rotate(-20deg) translate(-50px,-100px);
-    -moz-transform:rotate(-20deg) translate(-50px,-100px);
-    -ms-transform:rotate(-20deg) translate(-50px,-100px);
-    -o-transform:rotate(-20deg) translate(-50px,-100px);
+    /* background-color: var(--main-color); */
     padding: 20px;
-    height: 200px; */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* background-image: linear-gradient(to right bottom,      rgba(7, 144, 181, 0.8),     rgba(13, 73, 157, 0.8)),
+    url('../assets/ha.jpeg'); */
+    background-size: contain;
+    background-position: top;
+    background-repeat: no-repeat;
+    position: relative;
+    /* width: fit-content; */
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
 }
+
 .header h1{
+    margin-top: 10px;
     color: #3CB35A;
-    /* box-shadow: -5px 7px 6px #888888; */
+    background: -webkit-linear-gradient(#eee, #272626);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 .search1{
     display: flex;
@@ -79,11 +88,15 @@ color: #fff;
     outline: 2px solid black;
     margin-top: 50px;
     position: relative;
+    border-left: none;
+    background-color: var(--second-color);
+    color: white;
 }
 .input1::placeholder {
     color: #1E293B;
     font-weight: bold;
     opacity: 0.6;
+    color: wheat;
     
 }
 .input-container {
@@ -95,7 +108,7 @@ color: #fff;
     border: 1px solid black;
     border-right: none;
     position: absolute;
-    top: 77%;
+    top: 70px;
     left: 49px;
     transform: translateY(-50%);
     text-align: center;
@@ -103,8 +116,9 @@ color: #fff;
     z-index: 99;
     background-color: #635E79;
     color: black;
+    border-right: none;
     font-size: 15px;
-    height: 41px;
+    height: 43px;
     width: 70px;
 }
 .bt{
@@ -126,6 +140,7 @@ color: #fff;
     -moz-transition: transform 0.5s ease;
     -ms-transition: transform 0.5s ease;
     -o-transition: transform 0.5s ease;
+    width: 185px;
 }
 
 .bt:hover{
@@ -204,6 +219,7 @@ color: #fff;
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
     font-weight: bold;
+    width: 185px;
 }
 
 .switch button:hover{
