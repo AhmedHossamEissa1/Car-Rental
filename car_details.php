@@ -42,10 +42,21 @@ $car = $user->showCarDetails($_GET["num"]);
             echo '<ul>';
             $canRent = false; // Initialize a variable to track if the car can be rented
             foreach ($car as $property => $value) {
-                if ($property == 'image' || $property == 'car_id' || $property == 'plate_id' || $property == 'office_id') {
+                if ($property == 'image' || $property == 'car_id' || $property == 'plate_id' || $property == 'car_status') {
                     continue;
                 }
-                echo '<li><strong>' . ucfirst($property) . ':</strong> ' . $value . '</li>';
+                if($property == 'office_id' ){
+                    $conn= new mysqli("localhost","root","","car_rental");
+                    if($conn->connect_error){
+                       die("connection failed".$conn->connect_error);
+                    }
+                    $sql="SELECT country,state FROM office WHERE office_id='".$value."' ";
+                    $quer=$conn->query($sql);
+                    $a = $quer->fetch_assoc();
+                    $conn->close();
+                    echo '<li><strong>pickup :</strong> ' . $a['country'] . ' ' . $a['state'] . '</li>';
+                }else{
+                echo '<li><strong>' . ucfirst($property) . ':</strong> ' . $value . '</li>';}
                 // Check if the car is available for rent
                 if ($property == 'car_status' && $value == 'Available') {
                     $canRent = true;

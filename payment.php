@@ -36,10 +36,14 @@ $offid=$_GET['num3'];
      
       <br>
 
+<div>
+      <label for="toggleVisa" style="display: inline-block;">Pay at pickup</label>
+<input style="margin-top: 0; display: inline-block;" type="checkbox" id="toggleVisa" onchange="toggleVisaInput()"></div>
+<br>
 
-      <label for="visanumber">Enter Your Visa Number:</label>
-      <input style="height: 30px;" type="number" id="visanumber" name="visanumber" required><br>
-
+<label for="visanumber">pay now:</label>
+<input style="height: 30px;" type="number" id="visanumber" name="visanumber" required>
+<br>
 
       <button type="submit" name="pay" class="pay-btn">Pay</button></form>
 
@@ -52,7 +56,7 @@ if($conn->connect_error){
     
     $pickupDate = $_POST['pickup_date'];
     $returnDate = $_POST['return_date'];
-    $visaNumber = $_POST['visanumber'];
+   
   
     if ($returnDate <= $pickupDate) {
       echo "<p>Return date must be greater than pickup date.</p>"; 
@@ -70,7 +74,28 @@ if($conn->connect_error){
       
  
     if ($quer1->num_rows == 0) //avilble car
-    { $current_time = date("Y-m-d H:i:s");
+    { if(empty($_POST['visanumber'])){
+      $pickupDateTime = new DateTime($pickupDate);
+      $returnDateTime = new DateTime($returnDate);
+
+   $interval = $pickupDateTime->diff($returnDateTime);
+    $numberOfDays = $interval->days;
+      $visaNumber = $_POST['visanumber'];
+      $current_time = date("Y-m-d H:i:s");
+      $sql2="INSERT INTO reservation (reservation_date, pickup_date, return_date, admin_id, car_id, user_id, office_id)
+      VALUES
+          ('".$current_time."', '".$pickupDate."', '".$returnDate."',1 ,'".$id."' , '".$userid."', '".$offid."');";
+       $quer2=$conn->query($sql2);
+       $lastInsertedId = $conn->insert_id;
+       $sql3="INSERT INTO payment (paymentstaus,remaining,reservation_id,payment_date)
+       VALUES
+       ('cash',$price*$numberOfDays,'".$lastInsertedId."','".$current_time."');";
+       $quer3=$conn->query($sql3);
+       header("Location: home.php");
+       exit();
+    }else{
+      
+      $current_time = date("Y-m-d H:i:s");
       $sql2="INSERT INTO reservation (reservation_date, pickup_date, return_date, admin_id, car_id, user_id, office_id)
       VALUES
           ('".$current_time."', '".$pickupDate."', '".$returnDate."',1 ,'".$id."' , '".$userid."', '".$offid."');";
@@ -81,7 +106,7 @@ if($conn->connect_error){
        ('visa',0,'".$lastInsertedId."','".$current_time."');";
        $quer3=$conn->query($sql3);
        header("Location: home.php");
-       exit();
+       exit();}
 
     }else{
       $row = $quer1->fetch_assoc();
@@ -97,9 +122,7 @@ if($conn->connect_error){
 
 
   
-  } else {
-   
-  }$conn->close();
+  } $conn->close();
   ?>
 
 
@@ -120,6 +143,14 @@ if($conn->connect_error){
         function validateDates() {
       var pickupDate = new Date(document.getElementById("pickup_date").value);
       var returnDate = new Date(document.getElementById("return_date").value);
+       var currentTime = new Date();
+
+
+  if (pickupDate < currentTime ) {
+
+    alert("you have a time machine or what");
+    return false;
+  }
 
       if (returnDate <= pickupDate) {
         alert("Return date must be greater than pickup date");
@@ -157,6 +188,19 @@ if($conn->connect_error){
 function returnHome(number, number1) {
         window.location.href = "home.php" ;
     }
+    function toggleVisaInput() {
+    var toggleVisa = document.getElementById("toggleVisa");
+    var visaNumberInput = document.getElementById("visanumber");
+
+    if (toggleVisa.checked) {
+        visaNumberInput.value = ""; // Clear the input
+        visaNumberInput.disabled = true;
+        visaNumberInput.removeAttribute("required");
+    } else {
+        visaNumberInput.disabled = false;
+        visaNumberInput.setAttribute("required", "required");
+    }
+}
   </script>
 </body>
 
