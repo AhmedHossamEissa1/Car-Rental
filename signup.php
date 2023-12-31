@@ -54,7 +54,7 @@
                 <input type="text" name="state" id="state" placeholder="Enter your State">
 
                 <label for=""><b>Are you already have an account?</b></label>
-                <a href="login.php" style="color: blue;"><b>Login</b></a>
+                <a href="index.php" style="color: blue;"><b>Login</b></a>
                 <button type="submit" style="font-size: medium; margin-top: 20px;"><b>Sign Up</b></button>
             </div>
         </form>

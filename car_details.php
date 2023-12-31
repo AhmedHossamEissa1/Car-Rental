@@ -102,6 +102,18 @@ $car = $user->showCarDetails($_GET["num"]);
     </footer>
 
     <script>
+        window.addEventListener('popstate', function(event) {
+  // Check if the back button was clicked
+  if (event.state && event.state.customData === 'backButtonClicked') {
+    // Do something when the back button is clicked
+    console.log('User clicked the back button');
+    customBack();
+  }
+});
+        function customBack() {
+  const customData = { customData: 'backButtonClicked' };
+  window.history.pushState(customData, document.title, 'home.php');
+}
         function gotoPayment(number, number1) {
             var userId = <?php echo $user->id; ?>;
             var offId = <?php echo $car['office_id']; ?>;
