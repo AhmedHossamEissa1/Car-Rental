@@ -41,6 +41,8 @@ $cars = user::showCars();
 
   <main>
     <div class="car-list">
+  
+
       <?php foreach ($cars as $car) : ?>
         <div class="car-item">
           <img src="<?php echo $car[3]; ?>" alt="<?php echo $car[1]; ?>">

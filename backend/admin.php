@@ -256,15 +256,19 @@ if (empty($_SESSION["user"])) {
                     $fromDate1 = $_POST['date5'];
 
                     echo 'Result of Service number 3: <br><br>';
-                    $query = mysqli_query($con, "SELECT 
-                        CASE 
-                            WHEN '$fromDate1' BETWEEN r.pickup_date AND r.return_date THEN 'Rented'
-                            ELSE 'Available'
-                        END AS car_status
-                    FROM 
-                        car AS c
-                    LEFT JOIN 
-                        reservation AS r ON r.car_id = c.car_id;");
+                    $query = mysqli_query($con, "SELECT  car.car_id,car.plate_id, 'rented' AS car_status
+                    FROM car 
+                    INNER JOIN reservation ON car.car_id = reservation.car_id
+                    WHERE '".$fromDate1."' BETWEEN reservation.pickup_date AND reservation.return_date
+                    UNION
+                    SELECT car.car_id,car.plate_id, 'availble' AS car_status
+                    FROM car
+                    WHERE car.car_id NOT IN (
+                        SELECT car.car_id
+                        FROM car 
+                        INNER JOIN reservation ON car.car_id = reservation.car_id
+                        WHERE '".$fromDate1."' BETWEEN reservation.pickup_date AND reservation.return_date
+                    );");
                     if ($query) {
                         $row = mysqli_fetch_assoc($query);
 
@@ -399,7 +403,6 @@ if (empty($_SESSION["user"])) {
 
 
 
-    <script src="javascript/admin.js"></script>
     <script>
         function search() {
             window.location.href = "search.html";
