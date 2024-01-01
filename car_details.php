@@ -17,6 +17,7 @@ $car = $user->showCarDetails($_GET["num"]);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/car_details.css">
+    <link rel="shortcut icon" href="assets/car.png" type="image/x-icon">
     <title>Car Details Page</title>
 </head>
 
@@ -27,6 +28,7 @@ $car = $user->showCarDetails($_GET["num"]);
 
 
 
+        <button onclick="goBackToHome()">Back</button>
         <button onclick="logout()">LOGOUT</button>
 
 
@@ -45,18 +47,19 @@ $car = $user->showCarDetails($_GET["num"]);
                 if ($property == 'image' || $property == 'car_id' || $property == 'plate_id' || $property == 'car_status') {
                     continue;
                 }
-                if($property == 'office_id' ){
-                    $conn= new mysqli("localhost","root","","car_rental");
-                    if($conn->connect_error){
-                       die("connection failed".$conn->connect_error);
+                if ($property == 'office_id') {
+                    $conn = new mysqli("localhost", "root", "", "car_rental");
+                    if ($conn->connect_error) {
+                        die("connection failed" . $conn->connect_error);
                     }
-                    $sql="SELECT country,state FROM office WHERE office_id='".$value."' ";
-                    $quer=$conn->query($sql);
+                    $sql = "SELECT country,state FROM office WHERE office_id='" . $value . "' ";
+                    $quer = $conn->query($sql);
                     $a = $quer->fetch_assoc();
                     $conn->close();
                     echo '<li><strong>pickup :</strong> ' . $a['country'] . ' ' . $a['state'] . '</li>';
-                }else{
-                echo '<li><strong>' . ucfirst($property) . ':</strong> ' . $value . '</li>';}
+                } else {
+                    echo '<li><strong>' . ucfirst($property) . ':</strong> ' . $value . '</li>';
+                }
                 // Check if the car is available for rent
                 if ($property == 'car_status' && $value == 'Available') {
                     $canRent = true;
@@ -103,17 +106,21 @@ $car = $user->showCarDetails($_GET["num"]);
 
     <script>
         window.addEventListener('popstate', function(event) {
-  // Check if the back button was clicked
-  if (event.state && event.state.customData === 'backButtonClicked') {
-    // Do something when the back button is clicked
-    console.log('User clicked the back button');
-    customBack();
-  }
-});
+            // Check if the back button was clicked
+            if (event.state && event.state.customData === 'backButtonClicked') {
+                // Do something when the back button is clicked
+                console.log('User clicked the back button');
+                customBack();
+            }
+        });
+
         function customBack() {
-  const customData = { customData: 'backButtonClicked' };
-  window.history.pushState(customData, document.title, 'home.php');
-}
+            const customData = {
+                customData: 'backButtonClicked'
+            };
+            window.history.pushState(customData, document.title, 'home.php');
+        }
+
         function gotoPayment(number, number1) {
             var userId = <?php echo $user->id; ?>;
             var offId = <?php echo $car['office_id']; ?>;
@@ -125,6 +132,10 @@ $car = $user->showCarDetails($_GET["num"]);
             window.location.href = "home.php";
         }
 
+        function logout() {
+            console.log("Logout function called");
+            window.location.href = "logout.php";
+        }
     </script>
 </body>
 

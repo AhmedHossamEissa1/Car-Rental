@@ -14,6 +14,7 @@ $offid=$_GET['num3'];
 
 <head>
   <meta charset="UTF-8">
+  <link rel="shortcut icon" href="assets/online-payment.png" type="image/x-icon">
   <title>Car Rental Payment</title>
   <link rel="stylesheet" href="css/payment.css">
 </head>

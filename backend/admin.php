@@ -1,6 +1,6 @@
 <?php
 session_start();
-            
+
 if (empty($_SESSION["user"])) {
     header("location:../unauthorized.php");
 }
@@ -11,6 +11,7 @@ if (empty($_SESSION["user"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../assets/admin.png" type="image/x-icon">
     <title>Admin page</title>
     <link rel="stylesheet" href="../css/admin.css">
 </head>
@@ -34,7 +35,7 @@ if (empty($_SESSION["user"])) {
 
     <div class="grid-container">
         <aside>
-            <form id="submit" action="admin.php" method="post" > <!-- make admin.php to handle requests-->
+            <form id="submit" action="admin.php" method="post"> <!-- make admin.php to handle requests-->
                 <span class="menu-text">ADMIN MENU</span>
                 <ul class="box">
 
@@ -409,7 +410,7 @@ if (empty($_SESSION["user"])) {
 
         function logout() {
             console.log("Logout function called");
-            window.location.href = "../index.html";
+            window.location.href = "../logout.php";
         }
 
         function check() {

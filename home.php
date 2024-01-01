@@ -9,7 +9,7 @@ require_once('class.php');
 $user = unserialize($_SESSION["user"]);
 
 $cars = user::showCars();
-var_dump($cars);
+// var_dump($cars);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +17,7 @@ var_dump($cars);
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="assets/home.png" type="image/x-icon">
   <title>Home Page</title>
   <link rel="stylesheet" href="css/index.css">
   <link rel="stylesheet" href="">
@@ -88,7 +89,7 @@ var_dump($cars);
 
     function logout() {
       console.log("Logout function called");
-      window.location.href = "index.php";
+      window.location.href = "logout.php";
     }
   </script>
 
