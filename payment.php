@@ -65,7 +65,7 @@ if($conn->connect_error){
   }else{
     $sql1="SELECT reservation.*
     FROM reservation 
-    WHERE car_id = '".$id."'
+    WHERE car_id = '".$id."' 
       AND (('".$pickupDate."'  BETWEEN pickup_date AND return_date) 
       or ('".$returnDate."'  BETWEEN pickup_date AND return_date)
        or (pickup_date  BETWEEN '".$pickupDate."'  AND '".$returnDate."') 
@@ -74,8 +74,11 @@ if($conn->connect_error){
    
       
  
-    if ($quer1->num_rows == 0) //avilble car
-    { if(empty($_POST['visanumber'])){
+    if ($quer1->num_rows == 0) //car is not booked in this date
+    { $sqlll = "SELECT car_id FROM car WHERE car_status = 'Available' AND car_id = '".$id."' ;";
+      $quer4 = $conn->query($sqlll);
+     if ($quer4->num_rows > 0){
+      if(empty($_POST['visanumber'])){
       $pickupDateTime = new DateTime($pickupDate);
       $returnDateTime = new DateTime($returnDate);
 
@@ -108,7 +111,9 @@ if($conn->connect_error){
        $quer3=$conn->query($sql3);
        header("Location: home.php");
        exit();}
-
+    }else{
+      echo "<p>the car is out of service</p>";
+    }
     }else{
       $row = $quer1->fetch_assoc();
       $p = $row['pickup_date'];

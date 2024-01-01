@@ -267,8 +267,7 @@ if (empty($_SESSION["user"])) {
                     INNER JOIN reservation ON car.car_id = reservation.car_id
                     WHERE '" . $fromDate1 . "' BETWEEN reservation.pickup_date AND reservation.return_date
                     UNION
-                    SELECT car.car_id,car.plate_id, 'availble' AS car_status
-                    FROM car
+                    SELECT car.car_id,car.plate_id,car_status FROM car
                     WHERE car.car_id NOT IN (
                         SELECT car.car_id
                         FROM car 
