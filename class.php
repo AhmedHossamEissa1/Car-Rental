@@ -63,7 +63,7 @@ static function showCars()
 {
     require_once('config.php');
     $connect = new mysqli(DB_host, DB_user_name, DB_user_password, DB_name);
-    $qry = "SELECT year ,model ,price_per_day ,image ,car_id FROM car Where car_status='Availble' ORDER BY RAND() LIMIT 6";
+    $qry = "SELECT year ,model ,price_per_day ,image ,car_id FROM car Where car_status='Available' ORDER BY RAND() LIMIT 6";
     $result = mysqli_query($connect, $qry);
     $data = mysqli_fetch_all($result);
     mysqli_close($connect);

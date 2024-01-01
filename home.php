@@ -41,7 +41,7 @@ $cars = user::showCars();
 
   <main>
     <div class="car-list">
-    <a href="backend/admin.php">Visit Example Website</a>
+   
 
 
       <?php foreach ($cars as $car) : ?>
