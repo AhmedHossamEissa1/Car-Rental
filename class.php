@@ -59,7 +59,7 @@ static function signup($Fname, $Lname, $email, $password, $country, $state){
     }
 }
 
-static function showCars()
+function showCars()
 {
     require_once('config.php');
     $connect = new mysqli(DB_host, DB_user_name, DB_user_password, DB_name);
@@ -125,23 +125,6 @@ class admin {
         return $admin;
     }
     
-    static function signup($fname, $lname, $email, $password){
-        require_once("config.php");
-    
-        $connect = new mysqli(DB_host, DB_user_name, DB_user_password, DB_name);
-    
-    
-        $sql = "INSERT INTO admin (Fname, Lname, email , password) values('$fname', '$lname', '$email', '$password')";
-    
-        try {
-            $rslt = mysqli_query($connect, $sql);
-            mysqli_close($connect);
-            header("location:index.php?msg=done");
-        } catch (\Throwable $th) {
-            mysqli_close($connect);
-            header("location:signup.php?msg=error");
-        }
-    }
     
     }
     

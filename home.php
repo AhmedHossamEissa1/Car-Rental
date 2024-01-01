@@ -8,7 +8,7 @@ if (empty($_SESSION["user"])) {
 require_once('class.php');
 $user = unserialize($_SESSION["user"]);
 
-$cars = user::showCars();
+$cars = $user->showCars();
 // var_dump($cars);
 ?>
 <!DOCTYPE html>
