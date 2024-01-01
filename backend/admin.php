@@ -150,6 +150,12 @@ if (empty($_SESSION["user"])) {
             <input id="in5" class="i5" type="text" name="price_per_day">
             <label for="office_id">office ID</label>
             <input id="in6" class="i6" type="text" name="office_id">
+
+            <label for="color">Car Color</label>
+            <input id="in8" type="text" id="co" name="color">
+
+            <label for="no_seats">Number of Seats</label>
+            <input id="in9" type="text" id="seats" name="no_seats">
             
             <label for="img">Car Image Name</label>
             <input id="in7" type="text" id="img" name="file_name">
@@ -208,7 +214,7 @@ if (empty($_SESSION["user"])) {
                     // echo 'Enter a valid period';
                     // echo '</h1>';
 
-                    echo 'Result of Service number 1: <br><br>';
+                    // echo 'Result of Service number 1: <br><br>';
                     $query = mysqli_query($con, "SELECT r.reservation_date,r.pickup_date,r.return_date,c.*,u.Fname,u.Lname,u.user_id,u.email,u.country FROM reservation 
                         AS r JOIN car AS c ON r.car_id =c.car_id JOIN user as u ON r.user_id = u.user_id WHERE (r.pickup_date BETWEEN '$fromDate1' AND '$toDate2')
                         or (r.return_date BETWEEN '$fromDate1' AND '$toDate2');
@@ -232,7 +238,7 @@ if (empty($_SESSION["user"])) {
                 else   if (!empty($_POST['date3']) && !empty($_POST['date4'])) {
                     $fromDate1 = $_POST['date3'];
                     $toDate2 = $_POST['date4'];
-                    echo 'Result of Service number 2: <br><br>';
+                    // echo 'Result of Service number 2: <br><br>';
                     $query = mysqli_query($con, "SELECT * FROM reservation AS r JOIN car AS c ON r.car_id =c.car_id
                         WHERE (r.pickup_date BETWEEN  '$fromDate1' AND '$toDate2') or( r.return_date BETWEEN '$fromDate1' AND '$toDate2');
                         ");
@@ -255,11 +261,11 @@ if (empty($_SESSION["user"])) {
                 else   if (!empty($_POST['date5'])) {
                     $fromDate1 = $_POST['date5'];
 
-                    echo 'Result of Service number 3: <br><br>';
+                    // echo 'Result of Service number 3: <br><br>';
                     $query = mysqli_query($con, "SELECT  car.car_id,car.plate_id, 'rented' AS car_status
                     FROM car 
                     INNER JOIN reservation ON car.car_id = reservation.car_id
-                    WHERE '".$fromDate1."' BETWEEN reservation.pickup_date AND reservation.return_date
+                    WHERE '" . $fromDate1 . "' BETWEEN reservation.pickup_date AND reservation.return_date
                     UNION
                     SELECT car.car_id,car.plate_id, 'availble' AS car_status
                     FROM car
@@ -267,7 +273,7 @@ if (empty($_SESSION["user"])) {
                         SELECT car.car_id
                         FROM car 
                         INNER JOIN reservation ON car.car_id = reservation.car_id
-                        WHERE '".$fromDate1."' BETWEEN reservation.pickup_date AND reservation.return_date
+                        WHERE '" . $fromDate1 . "' BETWEEN reservation.pickup_date AND reservation.return_date
                     );");
                     if ($query) {
                         $row = mysqli_fetch_assoc($query);
@@ -308,7 +314,7 @@ if (empty($_SESSION["user"])) {
                 ) { {
                         $fromDate1 = $_POST['date6'];
                         $toDate2 = $_POST['date7'];
-                        echo 'Result of Service number 5: <br><br>';
+                        // echo 'Result of Service number 5: <br><br>';
                         $query = mysqli_query($con, "SELECT p.*, r.user_id, r.car_id 
                     FROM payment AS p 
                     INNER JOIN reservation AS r ON r.reservation_id = p.reservation_id
@@ -342,12 +348,14 @@ if (empty($_SESSION["user"])) {
                 $price_per_day = $_POST['price_per_day'];
                 $office_id = $_POST['office_id'];
                 $fileName = $_POST['file_name'];
+                $color = $_POST['color'];
+                $no_seats = $_POST['no_seats'];
 
                 error_reporting(E_ALL);
                 ini_set('display_errors', 1);
 
-                $sql = "INSERT INTO car (car_status, image, model,office_id,plate_id,price_per_day,`year`)
-                    VALUES ('$car_status', '$fileName','$model','$office_id','$plate_id','$price_per_day','$year')";
+                $sql = "INSERT INTO car (car_status, image, model,office_id,plate_id,price_per_day,`year`,color,numberOfSeats)
+                    VALUES ('$car_status', '$fileName','$model','$office_id','$plate_id','$price_per_day','$year','$color','$no_seats')";
 
                 if (mysqli_query($con, $sql)) {
 
@@ -424,6 +432,9 @@ if (empty($_SESSION["user"])) {
             var x5 = document.getElementById('in5').value;
             var x6 = document.getElementById('in6').value;
             var x7 = document.getElementById('in7').value;
+            var x8 = document.getElementById('in8').value;
+            var x9 = document.getElementById('in9').value;
+
 
             if (!x1) {
                 alert("Enter a year to search")
@@ -451,6 +462,14 @@ if (empty($_SESSION["user"])) {
             }
             if (!x7) {
                 alert("Enter image name");
+                return false;
+            }
+            if(!x8){
+                alert("Enter a color");
+                return false;
+            }
+            if(!x9){
+                alert("Enter number of seats");
                 return false;
             }
             return true;
