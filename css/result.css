@@ -46,7 +46,7 @@ body {
 }
 body::before{
     content: '';
-    background-image: url('../assets/bc.jpg'); 
+    background-image: url('../assets/ha.jpeg'); 
     /* background-size: cover; */
     background-repeat: repeat;
     opacity: 0.8;
